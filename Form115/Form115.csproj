@@ -161,7 +161,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HotelsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProduitsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SejoursController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -197,6 +199,16 @@
     <Content Include="Areas\Admin\Views\Produits\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Produits\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Produits\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Sejours\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sejours\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Sejours\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Sejours\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Sejours\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
