@@ -14,9 +14,16 @@ namespace DataLayer.Models
     
     public partial class Utilisateurs
     {
+        public Utilisateurs()
+        {
+            this.Reservations = new HashSet<Reservations>();
+        }
+    
         public int IdUtilisateur { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string Telephone { get; set; }
+    
+        public virtual ICollection<Reservations> Reservations { get; set; }
     }
 }

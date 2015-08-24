@@ -12,20 +12,16 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Hotels
+    public partial class Continents
     {
-        public Hotels()
+        public Continents()
         {
-            this.Sejours = new HashSet<Sejours>();
+            this.Regions = new HashSet<Regions>();
         }
     
-        public int IdHotel { get; set; }
-        public Nullable<int> IdVille { get; set; }
-        public Nullable<byte> Categorie { get; set; }
-        public string Description { get; set; }
-        public string Photo { get; set; }
+        public int idContinent { get; set; }
+        public string name { get; set; }
     
-        public virtual ICollection<Sejours> Sejours { get; set; }
-        public virtual Villes Villes { get; set; }
+        public virtual ICollection<Regions> Regions { get; set; }
     }
 }

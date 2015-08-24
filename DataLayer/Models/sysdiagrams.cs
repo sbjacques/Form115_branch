@@ -12,20 +12,12 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Hotels
+    public partial class sysdiagrams
     {
-        public Hotels()
-        {
-            this.Sejours = new HashSet<Sejours>();
-        }
-    
-        public int IdHotel { get; set; }
-        public Nullable<int> IdVille { get; set; }
-        public Nullable<byte> Categorie { get; set; }
-        public string Description { get; set; }
-        public string Photo { get; set; }
-    
-        public virtual ICollection<Sejours> Sejours { get; set; }
-        public virtual Villes Villes { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

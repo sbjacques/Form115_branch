@@ -20,5 +20,6 @@ namespace DataLayer.Models
         public int IdUtilisateur { get; set; }
     
         public virtual Produits Produits { get; set; }
+        public virtual Utilisateurs Utilisateurs { get; set; }
     }
 }

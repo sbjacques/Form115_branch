@@ -17,7 +17,8 @@ namespace Form115.Areas.Admin.Controllers
         // GET: Admin/Hotels
         public ActionResult Index()
         {
-            return View(db.Hotels.ToList());
+            var hotels = db.Hotels.Include(h => h.Villes);
+            return View(hotels.ToList());
         }
 
         // GET: Admin/Hotels/Details/5
@@ -38,6 +39,7 @@ namespace Form115.Areas.Admin.Controllers
         // GET: Admin/Hotels/Create
         public ActionResult Create()
         {
+            ViewBag.IdVille = new SelectList(db.Villes, "idVille", "name");
             return View();
         }
 
@@ -55,6 +57,7 @@ namespace Form115.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.IdVille = new SelectList(db.Villes, "idVille", "name", hotels.IdVille);
             return View(hotels);
         }
 
@@ -70,6 +73,7 @@ namespace Form115.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.IdVille = new SelectList(db.Villes, "idVille", "name", hotels.IdVille);
             return View(hotels);
         }
 
@@ -86,6 +90,7 @@ namespace Form115.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.IdVille = new SelectList(db.Villes, "idVille", "name", hotels.IdVille);
             return View(hotels);
         }
 
