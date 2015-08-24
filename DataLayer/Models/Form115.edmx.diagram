@@ -9,10 +9,19 @@
         <EntityTypeShape EntityType="Form115Model.Produits" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Form115Model.Reservations" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Form115Model.Sejours" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form115Model.Utilisateurs" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form115Model.Utilisateurs" Width="1.5" PointX="9.875" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="Form115Model.fk_sejours_hotels" ManuallyRouted="false" />
         <AssociationConnector Association="Form115Model.fk_produits_sejours" ManuallyRouted="false" />
         <AssociationConnector Association="Form115Model.fk_reservations_produits" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Form115Model.Continents" Width="1.5" PointX="0.75" PointY="20" />
+        <EntityTypeShape EntityType="Form115Model.Pays" Width="1.5" PointX="0.75" PointY="11.875" />
+        <EntityTypeShape EntityType="Form115Model.Regions" Width="1.5" PointX="0.75" PointY="16.875" />
+        <EntityTypeShape EntityType="Form115Model.Villes" Width="1.5" PointX="0.75" PointY="8.625" />
+        <AssociationConnector Association="Form115Model.Regions_Continents_fk" />
+        <AssociationConnector Association="Form115Model.Hotels_Villes_fk" />
+        <AssociationConnector Association="Form115Model.Pays_Regions_fk" />
+        <AssociationConnector Association="Form115Model.Villes_Pays_fk" />
+        <AssociationConnector Association="Form115Model.Reservations_Utilisateurs_fk" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
