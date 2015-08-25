@@ -12,20 +12,16 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Produits
+    public partial class Categories
     {
-        public Produits()
+        public Categories()
         {
-            this.Reservations = new HashSet<Reservations>();
+            this.Hotels = new HashSet<Hotels>();
         }
     
-        public int IdProduit { get; set; }
-        public int IdSejour { get; set; }
-        public int NbPlaces { get; set; }
-        public System.DateTime DateDepart { get; set; }
-        public Nullable<decimal> Prix { get; set; }
+        public byte IdCategorie { get; set; }
+        public string Description { get; set; }
     
-        public virtual Sejours Sejours { get; set; }
-        public virtual ICollection<Reservations> Reservations { get; set; }
+        public virtual ICollection<Hotels> Hotels { get; set; }
     }
 }

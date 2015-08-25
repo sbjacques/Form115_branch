@@ -39,7 +39,7 @@ namespace Form115.Areas.Admin.Controllers
         // GET: Admin/Sejours/Create
         public ActionResult Create()
         {
-            ViewBag.IdHotel = new SelectList(db.Hotels, "IdHotel", "Description");
+            ViewBag.IdHotel = new SelectList(db.Hotels, "IdHotel", "Nom");
             return View();
         }
 
@@ -50,14 +50,16 @@ namespace Form115.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdSejour,IdHotel,Duree")] Sejours sejours)
         {
-            if (ModelState.IsValid)
+            var req = db.Sejours.Where(x => x.IdHotel == sejours.IdHotel && x.Duree == sejours.Duree).Any();
+            if (ModelState.IsValid && req == false)
             {
                 db.Sejours.Add(sejours);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            
 
-            ViewBag.IdHotel = new SelectList(db.Hotels, "IdHotel", "Description", sejours.IdHotel);
+            ViewBag.IdHotel = new SelectList(db.Hotels, "IdHotel", "Nom", sejours.IdHotel);
             return View(sejours);
         }
 
@@ -73,7 +75,7 @@ namespace Form115.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IdHotel = new SelectList(db.Hotels, "IdHotel", "Description", sejours.IdHotel);
+            ViewBag.IdHotel = new SelectList(db.Hotels, "IdHotel", "Nom", sejours.IdHotel);
             return View(sejours);
         }
 
@@ -90,7 +92,7 @@ namespace Form115.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdHotel = new SelectList(db.Hotels, "IdHotel", "Description", sejours.IdHotel);
+            ViewBag.IdHotel = new SelectList(db.Hotels, "IdHotel", "Nom", sejours.IdHotel);
             return View(sejours);
         }
 

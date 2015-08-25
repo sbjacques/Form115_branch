@@ -6,7 +6,6 @@ CREATE TABLE Produits (
 	IdSejour               int       NOT NULL   ,
 	NbPlaces               int       NOT NULL   ,
 	DateDepart             date      NOT NULL   ,
-	Description            ntext           ,
 	Prix				   numeric         ,
 	CONSTRAINT Pk_Produits PRIMARY KEY ( IdProduit )
  );
@@ -22,6 +21,7 @@ CREATE TABLE Sejours (
  
 CREATE TABLE Hotels ( 
 	IdHotel              int NOT NULL    IDENTITY,
+	Nom					 nvarchar(60),
 	IdVille				 int,
 	Categorie            tinyint,
 	Description          ntext           ,
@@ -29,6 +29,11 @@ CREATE TABLE Hotels (
 	CONSTRAINT Pk_Hotels PRIMARY KEY ( IdHotel )
  );
 
+ CREATE TABLE Categories ( 
+	IdCategorie       tinyint IDENTITY,
+	Description       varchar(20)  NOT NULL,
+	CONSTRAINT Pk_Categorie PRIMARY KEY (IdCategorie)
+	 );  
   
 CREATE TABLE Reservations ( 
 	IdReservation		int NOT NULL    IDENTITY,
@@ -47,8 +52,3 @@ CREATE TABLE Utilisateurs (
 	CONSTRAINT Pk_Utilisateurs PRIMARY KEY ( IdUtilisateur )
 );
 
-ALTER TABLE Produits ADD CONSTRAINT fk_produits_sejours FOREIGN KEY ( IdSejour ) REFERENCES Sejours( IdSejour ) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-ALTER TABLE Sejours ADD CONSTRAINT fk_sejours_hotels FOREIGN KEY ( IdHotel ) REFERENCES Hotels ( IdHotel ) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-ALTER TABLE Reservations ADD CONSTRAINT fk_reservations_produits FOREIGN KEY ( IdProduit ) REFERENCES Produits ( IdProduit ) ON DELETE NO ACTION ON UPDATE NO ACTION;

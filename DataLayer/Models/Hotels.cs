@@ -20,12 +20,13 @@ namespace DataLayer.Models
         }
     
         public int IdHotel { get; set; }
+        public string Nom { get; set; }
         public Nullable<int> IdVille { get; set; }
         public Nullable<byte> Categorie { get; set; }
         public string Description { get; set; }
         public string Photo { get; set; }
-        public string Nom { get; set; }
     
+        public virtual Categories Categories { get; set; }
         public virtual ICollection<Sejours> Sejours { get; set; }
         public virtual Villes Villes { get; set; }
     }

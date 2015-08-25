@@ -50,6 +50,7 @@ namespace Form115.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdProduit,IdSejour,NbPlaces,DateDepart,Description,Prix")] Produits produits)
         {
+
             if (ModelState.IsValid)
             {
                 db.Produits.Add(produits);
