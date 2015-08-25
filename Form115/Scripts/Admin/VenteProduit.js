@@ -22,7 +22,7 @@ function loadHotel() {
 
         $.each(data, function (idx, item) {
 
-            s += '<option value ="' + item.Hotel + '">' + item.NomHotel+" - "+ item.Ville +'( '+ item.Pays +' )' + "</option>";
+            s += '<option value ="' + item.Hotel + '">' + item.NomHotel+" - "+ item.Ville +'('+ item.Pays +')' + "</option>";
 
         });
         $("#IdHotel").html(s);

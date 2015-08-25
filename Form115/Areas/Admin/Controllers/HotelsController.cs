@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DataLayer.Models;
+using System.IO;
 
 namespace Form115.Areas.Admin.Controllers
 {
@@ -52,6 +53,7 @@ namespace Form115.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Hotels.Add(hotels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -84,6 +86,7 @@ namespace Form115.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdHotel,IdVille,Categorie,Description,Photo,Nom")] Hotels hotels)
         {
+
             if (ModelState.IsValid)
             {
                 db.Entry(hotels).State = EntityState.Modified;
@@ -127,6 +130,26 @@ namespace Form115.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public ActionResult PhotoHotel(HttpPostedFileBase postedFile)
+        {
+            if (postedFile == null || postedFile.ContentLength <= 0)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var fileName = Path.GetFileName(postedFile.FileName);
+
+            if (fileName == null)
+            {
+                return RedirectToAction("");
+            }
+
+            var path = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
+            postedFile.SaveAs(path);
+            return RedirectToAction("Index", "Hotel");
         }
     }
 }
