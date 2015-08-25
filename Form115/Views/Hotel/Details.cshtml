@@ -1,0 +1,64 @@
+﻿@* @using System.Globalization*@
+@using Form115.Models
+@model HotelViewModel
+@{
+    ViewBag.Title = "Hotel " + Model.Hotel.Nom;
+}
+
+<h2>@Model.Hotel.Nom</h2>
+
+<table>
+    <tr>
+        <td style="width:10cm ; min-height:8cm">Ici, une belle photo.</td>
+        <td>
+            <p>@Model.Hotel.Description</p>
+            <p>
+                @Model.Hotel.Categorie @if (Model.Hotel.Categorie <= 1)
+                { <text>étoile</text> }
+                else
+                {<text>étoiles</text>}
+            </p>
+
+            @{var nb_durees = @Model.Hotel.Sejours.Count();}
+
+            @if (nb_durees <= 4)
+            {
+                <h4>Durée du séjour :</h4>
+                <ul style="list-style-type: none">
+                    @foreach (var sej in Model.Hotel.Sejours.OrderBy(s => s.Duree))
+                    {
+                        <li> <label><input type="checkbox" name="DureesPossibles" value="@sej.Duree" /> @sej.Duree jours</label></li>
+                    }
+                </ul>
+            }
+
+            @{ var sejour = @Model.Hotel.Sejours.First();}
+
+        </td>
+    </tr>
+</table>
+<table>
+    <thead>
+        <tr>
+            <th style="width:30em" colspan="4">Date de départ</th>
+            <th style="width:15em">Prix</th>
+            <th>Nombre de places restantes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prod in sejour.Produits)
+        {
+            DateTime date = @prod.DateDepart;
+            var nb_rest = prod.NbPlaces - prod.Reservations.GroupBy(r => r.IdProduit).Count();
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("fr-FR");
+            <tr>
+                <td style="width:9em">@date.DayOfWeek</td>
+                <td>@date.Day</td>
+                <td>@date.Month</td>
+                <td>@date.Year</td>
+                <td>@prod.Prix euros</td>
+                <td>@nb_rest</td>
+            </tr>
+        }
+    </tbody>
+</table>
