@@ -12,3 +12,6 @@ ADD CONSTRAINT Reservations_Utilisateurs_fk FOREIGN KEY (IdUtilisateur)
   REFERENCES dbo.Utilisateurs (IdUtilisateur) 
   ON UPDATE NO ACTION
   ON DELETE NO ACTION;
+
+  ALTER TABLE dbo.Hotels
+  ADD Nom nvarchar(60);
