@@ -1,0 +1,12 @@
+﻿@model List<DataLayer.Models.Hotels>
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>Result</h2>
+@foreach (var hotel in Model)
+{
+    @hotel.IdHotel
+    @hotel.Description
+}
+    
