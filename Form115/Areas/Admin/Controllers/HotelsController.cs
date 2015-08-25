@@ -48,7 +48,7 @@ namespace Form115.Areas.Admin.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdHotel,IdVille,Categorie,Description,Photo")] Hotels hotels)
+        public ActionResult Create([Bind(Include = "IdHotel,IdVille,Categorie,Description,Photo,Nom")] Hotels hotels)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace Form115.Areas.Admin.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdHotel,IdVille,Categorie,Description,Photo")] Hotels hotels)
+        public ActionResult Edit([Bind(Include = "IdHotel,IdVille,Categorie,Description,Photo,Nom")] Hotels hotels)
         {
             if (ModelState.IsValid)
             {

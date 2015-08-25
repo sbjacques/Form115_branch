@@ -50,6 +50,7 @@ namespace Form115.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdProduit,IdSejour,NbPlaces,DateDepart,Description,Prix")] Produits produits)
         {
+
             if (ModelState.IsValid)
             {
                 db.Produits.Add(produits);
@@ -127,6 +128,15 @@ namespace Form115.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public JsonResult GetJSONHotel(int id)
+        {
+            var db = new Form115Entities();
+            var result = db.Sejours
+                .Where(d => d.IdSejour == id)
+                .Select(d => new { Hotel = d.Hotels.IdHotel,NomHotel=d.Hotels.Nom, Ville =d.Hotels.Villes.name, Pays=d.Hotels.Villes.Pays.Name}).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -23,7 +23,6 @@ namespace DataLayer.Models
         public int IdSejour { get; set; }
         public int NbPlaces { get; set; }
         public System.DateTime DateDepart { get; set; }
-        public string Description { get; set; }
         public Nullable<decimal> Prix { get; set; }
     
         public virtual Sejours Sejours { get; set; }

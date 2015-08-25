@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Form115Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="IdCategorie" />
+          </Key>
+          <Property Name="IdCategorie" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="Continents">
           <Key>
             <PropertyRef Name="idContinent" />
@@ -17,6 +24,7 @@
             <PropertyRef Name="IdHotel" />
           </Key>
           <Property Name="IdHotel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="60" />
           <Property Name="IdVille" Type="int" />
           <Property Name="Categorie" Type="tinyint" />
           <Property Name="Description" Type="ntext" />
@@ -48,7 +56,6 @@
           <Property Name="IdSejour" Type="int" Nullable="false" />
           <Property Name="NbPlaces" Type="int" Nullable="false" />
           <Property Name="DateDepart" Type="date" Nullable="false" />
-          <Property Name="Description" Type="ntext" />
           <Property Name="Prix" Type="numeric" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Regions">
@@ -142,6 +149,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Hotels_Categories_fk">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Hotels" Type="Self.Hotels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="IdCategorie" />
+            </Principal>
+            <Dependent Role="Hotels">
+              <PropertyRef Name="Categorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Hotels_Villes_fk">
           <End Role="Villes" Type="Self.Villes" Multiplicity="0..1" />
           <End Role="Hotels" Type="Self.Hotels" Multiplicity="*" />
@@ -203,6 +222,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Form115ModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Continents" EntityType="Self.Continents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotels" EntityType="Self.Hotels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pays" EntityType="Self.Pays" Schema="dbo" store:Type="Tables" />
@@ -224,6 +244,10 @@
           <AssociationSet Name="fk_sejours_hotels" Association="Self.fk_sejours_hotels">
             <End Role="Hotels" EntitySet="Hotels" />
             <End Role="Sejours" EntitySet="Sejours" />
+          </AssociationSet>
+          <AssociationSet Name="Hotels_Categories_fk" Association="Self.Hotels_Categories_fk">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Hotels" EntitySet="Hotels" />
           </AssociationSet>
           <AssociationSet Name="Hotels_Villes_fk" Association="Self.Hotels_Villes_fk">
             <End Role="Villes" EntitySet="Villes" />
@@ -251,6 +275,14 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Form115Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="IdCategorie" />
+          </Key>
+          <Property Name="IdCategorie" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Hotels" Relationship="Self.Hotels_Categories_fk" FromRole="Categories" ToRole="Hotels" />
+        </EntityType>
         <EntityType Name="Continents">
           <Key>
             <PropertyRef Name="idContinent" />
@@ -264,10 +296,12 @@
             <PropertyRef Name="IdHotel" />
           </Key>
           <Property Name="IdHotel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="IdVille" Type="Int32" />
           <Property Name="Categorie" Type="Byte" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Photo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.Hotels_Categories_fk" FromRole="Hotels" ToRole="Categories" />
           <NavigationProperty Name="Sejours" Relationship="Self.fk_sejours_hotels" FromRole="Hotels" ToRole="Sejours" />
           <NavigationProperty Name="Villes" Relationship="Self.Hotels_Villes_fk" FromRole="Hotels" ToRole="Villes" />
         </EntityType>
@@ -299,7 +333,6 @@
           <Property Name="IdSejour" Type="Int32" Nullable="false" />
           <Property Name="NbPlaces" Type="Int32" Nullable="false" />
           <Property Name="DateDepart" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Prix" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Sejours" Relationship="Self.fk_produits_sejours" FromRole="Produits" ToRole="Sejours" />
           <NavigationProperty Name="Reservations" Relationship="Self.fk_reservations_produits" FromRole="Produits" ToRole="Reservations" />
@@ -368,6 +401,18 @@
           <NavigationProperty Name="Hotels" Relationship="Self.Hotels_Villes_fk" FromRole="Villes" ToRole="Hotels" />
           <NavigationProperty Name="Pays" Relationship="Self.Villes_Pays_fk" FromRole="Villes" ToRole="Pays" />
         </EntityType>
+        <Association Name="Hotels_Categories_fk">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Hotels" Type="Self.Hotels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="IdCategorie" />
+            </Principal>
+            <Dependent Role="Hotels">
+              <PropertyRef Name="Categorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Regions_Continents_fk">
           <End Role="Continents" Type="Self.Continents" Multiplicity="1" />
           <End Role="Regions" Type="Self.Regions" Multiplicity="*" />
@@ -465,6 +510,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Form115Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
           <EntitySet Name="Continents" EntityType="Self.Continents" />
           <EntitySet Name="Hotels" EntityType="Self.Hotels" />
           <EntitySet Name="Pays" EntityType="Self.Pays" />
@@ -475,6 +521,10 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateurs" />
           <EntitySet Name="Villes" EntityType="Self.Villes" />
+          <AssociationSet Name="Hotels_Categories_fk" Association="Self.Hotels_Categories_fk">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Hotels" EntitySet="Hotels" />
+          </AssociationSet>
           <AssociationSet Name="Regions_Continents_fk" Association="Self.Regions_Continents_fk">
             <End Role="Continents" EntitySet="Continents" />
             <End Role="Regions" EntitySet="Regions" />
@@ -514,6 +564,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Form115ModelStoreContainer" CdmEntityContainer="Form115Entities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Form115Model.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="IdCategorie" ColumnName="IdCategorie" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Continents">
             <EntityTypeMapping TypeName="Form115Model.Continents">
               <MappingFragment StoreEntitySet="Continents">
@@ -526,6 +584,7 @@
             <EntityTypeMapping TypeName="Form115Model.Hotels">
               <MappingFragment StoreEntitySet="Hotels">
                 <ScalarProperty Name="IdHotel" ColumnName="IdHotel" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="IdVille" ColumnName="IdVille" />
                 <ScalarProperty Name="Categorie" ColumnName="Categorie" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -559,7 +618,6 @@
                 <ScalarProperty Name="IdSejour" ColumnName="IdSejour" />
                 <ScalarProperty Name="NbPlaces" ColumnName="NbPlaces" />
                 <ScalarProperty Name="DateDepart" ColumnName="DateDepart" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Prix" ColumnName="Prix" />
               </MappingFragment>
             </EntityTypeMapping>
