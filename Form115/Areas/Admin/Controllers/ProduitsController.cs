@@ -129,5 +129,14 @@ namespace Form115.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public JsonResult GetJSONHotel(int id)
+        {
+            var db = new Form115Entities();
+            var result = db.Sejours
+                .Where(d => d.IdSejour == id)
+                .Select(d => new { Hotel = d.Hotels.IdHotel,NomHotel=d.Hotels.Nom, Ville =d.Hotels.Villes.name, Pays=d.Hotels.Villes.Pays.Name}).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

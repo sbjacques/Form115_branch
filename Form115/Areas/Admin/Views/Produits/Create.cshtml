@@ -20,9 +20,11 @@
             <div class="col-md-10">
                 @Html.DropDownList("IdSejour", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdSejour, "", new { @class = "text-danger" })
+                <div id="IdHotel"></div>
+                
             </div>
         </div>
-
+        
         <div class="form-group">
             @Html.LabelFor(model => model.NbPlaces," Disponibilité " , htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -35,7 +37,7 @@
             @Html.LabelFor(model => model.DateDepart,"Date de Départ" , htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DateDepart, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateDepart, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.DateDepart, "", new { @class = "text-danger", @id = "DateDepart" })
             </div>
         </div>
 
@@ -60,6 +62,8 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@section scripts {
+    
+    <script src="~/Scripts/DatePicker/js/bootstrap-datepicker.js"></script>
+<script src="~/Scripts/Admin/VenteProduit.js"></script>
 }
