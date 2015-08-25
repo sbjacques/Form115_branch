@@ -24,6 +24,7 @@ namespace DataLayer.Models
         public Nullable<byte> Categorie { get; set; }
         public string Description { get; set; }
         public string Photo { get; set; }
+        public string Nom { get; set; }
     
         public virtual ICollection<Sejours> Sejours { get; set; }
         public virtual Villes Villes { get; set; }

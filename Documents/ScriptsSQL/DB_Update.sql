@@ -15,3 +15,6 @@ ADD CONSTRAINT Reservations_Utilisateurs_fk FOREIGN KEY (IdUtilisateur)
 
   ALTER TABLE dbo.Hotels
   ADD Nom nvarchar(60);
+
+  ALTER TABLE dbo.Sejours
+  ADD CONSTRAINT ak_Sejour UNIQUE (IdHotel,Duree);

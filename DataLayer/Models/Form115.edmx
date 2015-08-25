@@ -21,6 +21,7 @@
           <Property Name="Categorie" Type="tinyint" />
           <Property Name="Description" Type="ntext" />
           <Property Name="Photo" Type="varchar" MaxLength="60" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="60" />
         </EntityType>
         <EntityType Name="Pays">
           <Key>
@@ -268,6 +269,7 @@
           <Property Name="Categorie" Type="Byte" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Photo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Nom" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sejours" Relationship="Self.fk_sejours_hotels" FromRole="Hotels" ToRole="Sejours" />
           <NavigationProperty Name="Villes" Relationship="Self.Hotels_Villes_fk" FromRole="Hotels" ToRole="Villes" />
         </EntityType>
@@ -530,6 +532,7 @@
                 <ScalarProperty Name="Categorie" ColumnName="Categorie" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
