@@ -1,12 +1,12 @@
 ﻿$(function () {
     
     $("#IdSejour").change(loadHotel);
-
+    loadHotel();
 
     $('#DateDepart').datepicker({
         format: "dd/mm/yyyy",
         todayBtn: "linked",
-        language: "fr",
+        language: auto,
         autoclose: true,
         todayHighlight: true,
         endDate: "-1d"

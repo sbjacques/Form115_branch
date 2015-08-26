@@ -19,7 +19,7 @@ namespace Form115.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var hotels = db.Hotels.Include(h => h.Villes);
-            return View(hotels.ToList());
+            return View(hotels.OrderBy(h=>h.IdHotel).ToList());
         }
 
         // GET: Admin/Hotels/Details/5
@@ -40,7 +40,7 @@ namespace Form115.Areas.Admin.Controllers
         // GET: Admin/Hotels/Create
         public ActionResult Create()
         {
-            ViewBag.IdVille = new SelectList(db.Villes, "idVille", "name");
+            ViewBag.IdVille = new SelectList(db.Villes.OrderBy(h =>h.name), "idVille", "name");
             return View();
         }
 

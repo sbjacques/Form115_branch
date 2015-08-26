@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Index des hôtels</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -43,7 +43,7 @@
             @Html.DisplayFor(modelItem => item.Nom)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Categorie)
+            @Html.DisplayFor(modelItem => item.Categories.Description)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)

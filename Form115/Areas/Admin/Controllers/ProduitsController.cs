@@ -135,7 +135,7 @@ namespace Form115.Areas.Admin.Controllers
             var db = new Form115Entities();
             var result = db.Sejours
                 .Where(d => d.IdSejour == id)
-                .Select(d => new { Hotel = d.Hotels.IdHotel,NomHotel=d.Hotels.Nom, Ville =d.Hotels.Villes.name, Pays=d.Hotels.Villes.Pays.Name}).ToList();
+                .Select(d => new { Hotel = d.Hotels.IdHotel,NomHotel=d.Hotels.Nom, Ville =d.Hotels.Villes.name, Pays=d.Hotels.Villes.Pays.Name}).OrderBy(x=>x.Ville).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
