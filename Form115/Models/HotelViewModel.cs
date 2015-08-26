@@ -9,9 +9,13 @@ namespace Form115.Models
     public class HotelViewModel
     {
 
-        public Hotels Hotel { get; set; }
+        public int IdHotel { get; set; }
 
-        public int DureeSejour { get; set; }
+        public int DureeMinSejour { get; set; }
+
+        public int DureeMaxSejour { get; set; }
+
+        public string DateDepart { get; set; }
 
     }
 }

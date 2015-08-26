@@ -18,13 +18,31 @@ namespace Form115.Controllers
 
         public ActionResult Details(int id)
         {
-            Form115Entities db = new Form115Entities();
-            Hotels hotel = db.Hotels.Where(h => h.IdHotel == id).First();
+            //Form115Entities db = new Form115Entities();
+            //Hotels hotel = db.Hotels.Where(h => h.IdHotel == id).First();
             HotelViewModel hvm = new HotelViewModel
             {
-                Hotel = hotel
+                IdHotel = id
             };
             return View(hvm);
         }
+
+        [HttpPost]
+        public JsonResult listeProduits(HotelViewModel hvm)
+        {
+            Form115Entities db = new Form115Entities();
+            DateTime dateRecue = DateTime.Parse(hvm.DateDepart);
+            var result = db.Produits.Where(p => p.Sejours.IdHotel == hvm.IdHotel)
+                            .Where(p=>p.Sejours.Duree >= hvm.DureeMinSejour && p.Sejours.Duree<=hvm.DureeMaxSejour)
+                            .Where(p=>DateTime.Compare(p.DateDepart,dateRecue)>=0)
+                            .Select(p => new { 
+                                date = p.DateDepart.ToString(), 
+                                duree = p.Sejours.Duree,
+                                prix = p.Prix, 
+                                nb_restants = p.NbPlaces - p.Reservations.GroupBy(r => r.IdProduit).Count() 
+                            });
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
