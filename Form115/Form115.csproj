@@ -300,6 +300,7 @@
     <Content Include="Scripts\DatePicker\locales\bootstrap-datepicker.vi.min.js" />
     <Content Include="Scripts\DatePicker\locales\bootstrap-datepicker.zh-CN.min.js" />
     <Content Include="Scripts\DatePicker\locales\bootstrap-datepicker.zh-TW.min.js" />
+    <Content Include="Scripts\Hotel\Details.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
@@ -355,6 +356,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Views\Continent\" />
+    <Folder Include="Areas\Admin\Uploads\" />
     <Folder Include="Views\Produit\" />
   </ItemGroup>
   <ItemGroup>

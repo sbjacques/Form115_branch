@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Continents.cs">
       <DependentUpon>Form115.tt</DependentUpon>
     </Compile>

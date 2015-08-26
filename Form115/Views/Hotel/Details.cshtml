@@ -5,6 +5,15 @@
     ViewBag.Title = "Hotel " + Model.Hotel.Nom;
 }
 
+@section scripts {
+    <script src="~/Scripts/DatePicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/Hotel/Details.js"></script>
+}
+
+@section styles {
+<link href="~/Scripts/DatePicker/css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" />
+}
+
 <h2>@Model.Hotel.Nom</h2>
 
 <table>
@@ -23,13 +32,16 @@
 
             @if (nb_durees <= 4)
             {
-                <h4>Durée du séjour :</h4>
+                <h4>Durée du séjour</h4>
                 <ul style="list-style-type: none">
                     @foreach (var sej in Model.Hotel.Sejours.OrderBy(s => s.Duree))
                     {
                         <li> <label><input type="checkbox" name="DureesPossibles" value="@sej.Duree" /> @sej.Duree jours</label></li>
                     }
                 </ul>
+
+                <h4>Date de départ</h4>
+                <input type="text" id="champDateDepart" />
             }
 
             @{ var sejour = @Model.Hotel.Sejours.First();}
