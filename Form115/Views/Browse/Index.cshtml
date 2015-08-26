@@ -5,11 +5,16 @@
 
 @*<h2>Index</h2>*@
 
-<p>Parcourir le catalogue</p>
+@section scripts{
+    <script src="~/Scripts/Browse/Index.js"></script>
+}
 
-<ul>
-    @foreach (var continent in Model.ListeContinents) {
-        <li><a href="#">@continent.Value</a></li>
+<p id="BreadCrumb">Parcourir le catalogue >> Continents</p>
+
+<p id="texteChoix">Choix du continent</p>
+<ul id="listeChoix">
+    @foreach (var continent in Model.ListeContinents)
+    {
+        <li><a class="Continents" href="#" id="@continent.Key">@continent.Value</a></li>
     }
 </ul>
-
