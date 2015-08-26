@@ -10,6 +10,7 @@ using DataLayer.Models;
 
 namespace Form115.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProduitsController : Controller
     {
         private Form115Entities db = new Form115Entities();

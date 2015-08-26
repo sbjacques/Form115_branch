@@ -7,7 +7,7 @@
 <h2>Index des hôtels</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Ajouter un nouvel hôtel", "Create")
 </p>
 <table class="table">
     <tr>
@@ -55,9 +55,9 @@
             @Html.DisplayFor(modelItem => item.Villes.name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdHotel }) |
+            @Html.ActionLink("Editer", "Edit", new { id=item.IdHotel }) |
             @Html.ActionLink("Details", "Details", new { id=item.IdHotel }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdHotel })
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.IdHotel })
         </td>
     </tr>
 }

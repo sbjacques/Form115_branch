@@ -25,6 +25,14 @@
         <AssociationConnector Association="Form115Model.fk_produits_sejours" ManuallyRouted="false" />
         <AssociationConnector Association="Form115Model.fk_reservations_produits" ManuallyRouted="false" />
         <AssociationConnector Association="Form115Model.Reservations_Utilisateurs_fk" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Form115Model.C__MigrationHistory" Width="1.5" PointX="3.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Form115Model.AspNetRoles" Width="1.5" PointX="0.75" PointY="10.5" />
+        <EntityTypeShape EntityType="Form115Model.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="Form115Model.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="9" />
+        <EntityTypeShape EntityType="Form115Model.AspNetUsers" Width="1.5" PointX="3" PointY="9.375" />
+        <AssociationConnector Association="Form115Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Form115Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Form115Model.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
