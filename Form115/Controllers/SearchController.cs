@@ -23,8 +23,8 @@ namespace Form115.Controllers
 
             svm.ListeContinents = _db.Continents.Select(c => new { Key = c.idContinent, Value = c.name }).ToDictionary(x => x.Key, x => x.Value);
             // TODO classe Categorie qui renverra la liste des catégories (méthode statique)
-            //svm.ListeCategories = _db.Categories.Select(c => new { Key = c.IdCategorie, Value = c.Description }).ToDictionary(x => x.Key, x => x.Value);
-            //svm.DisponibiliteMax = _db.Produits.Select(p => p.NbPlaces).Max();
+            svm.ListeCategories = _db.Categories.Select(c => new { Key = c.IdCategorie, Value = c.Description }).ToDictionary(x => x.Key, x => x.Value);
+            svm.DisponibiliteMax = _db.Produits.Select(p => p.NbPlaces).Max();
             svm.DisponibiliteMax = 20;
 
             return View(svm);
@@ -57,7 +57,7 @@ namespace Form115.Controllers
             // Search et SearchOption héritent de SearchBase
             SearchBase s = new Search();
             s = new SearchOptionDestination(s, svm.Continent, svm.Region, svm.Pays, svm.Ville);
-            s = new SearchOptionDateDepart(s, svm.DateDepart);
+            //s = new SearchOptionDateDepart(s, svm.DateDepart);
             s = new SearchOptionDuree(s, svm.Duree);
             s = new SearchOptionNbPers(s, svm.NbPers);
             s = new SearchOptionPrixMax(s, svm.PrixMax);

@@ -6,7 +6,11 @@
 <h2>Result</h2>
 @foreach (var hotel in Model)
 {
-    @hotel.IdHotel
-    @hotel.Description
+    <div class="form-group-sm-4">
+        <h3>@hotel.Nom</h3>
+        <p>@hotel.Description</p>@hotel.Description
+        @Html.ActionLink("Voir les séjours", "Details", new { id = @hotel.IdHotel, controller = "Hotel" })
+        
+    </div>
 }
     

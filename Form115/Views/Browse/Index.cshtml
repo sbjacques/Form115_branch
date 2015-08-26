@@ -1,0 +1,15 @@
+﻿@model Form115.Models.BrowseViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<h2>Index</h2>*@
+
+<p>Parcourir le catalogue</p>
+
+<ul>
+    @foreach (var continent in Model.ListeContinents) {
+        <li><a href="#">@continent.Value</a></li>
+    }
+</ul>
+

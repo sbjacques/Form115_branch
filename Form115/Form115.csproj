@@ -228,6 +228,7 @@
     <Content Include="Scripts\Admin\VenteProduit.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Browse\Index.js" />
     <Content Include="Scripts\DatePicker\css\bootstrap-datepicker.css" />
     <Content Include="Scripts\DatePicker\css\bootstrap-datepicker.min.css" />
     <Content Include="Scripts\DatePicker\css\bootstrap-datepicker.standalone.css" />
@@ -351,12 +352,13 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Search\Result.cshtml" />
     <Content Include="Views\Hotel\Details.cshtml" />
+    <Content Include="Views\Browse\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Views\Continent\" />
     <Folder Include="Areas\Admin\Uploads\" />
+    <Folder Include="Views\Continent\" />
     <Folder Include="Views\Produit\" />
   </ItemGroup>
   <ItemGroup>

@@ -16,7 +16,7 @@ namespace Form115.Models
         public int? NbPers { get; set; }
 
         // Informations de liste à envoyer à la BDD
-        public Dictionary<int, string> ListeCategories { get; set; }
+        public Dictionary<byte, string> ListeCategories { get; set; }
         public int DisponibiliteMax { get; set; }
     }
 }
