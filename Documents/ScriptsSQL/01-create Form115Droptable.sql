@@ -1,5 +1,57 @@
--- Création BDD
 USE form115
+
+--suppression des tables de la BDD Form115 si elles existent
+
+if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Produits')
+
+DROP TABLE Produits;
+
+if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Sejours')
+
+DROP TABLE Sejours;
+
+if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Hotels')
+
+DROP TABLE Hotels;
+
+if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Categories')
+
+DROP TABLE Categories;
+
+
+if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Villes')
+
+DROP TABLE Villes;
+
+if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Pays')
+
+DROP TABLE Pays;
+
+
+if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Regions')
+
+DROP TABLE Regions;
+
+if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Continents')
+
+DROP TABLE Continents;
+
+
+if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Utilisateurs')
+
+DROP TABLE Utilisateurs;
+
+if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Reservations')
+
+DROP TABLE Reservations;
+
+
+
+
+
+
+-- Création Table
+
 
 CREATE TABLE Produits ( 
 	IdProduit			   int       NOT NULL IDENTITY,
@@ -33,8 +85,9 @@ CREATE TABLE Hotels (
 	IdCategorie       tinyint IDENTITY,
 	Description       varchar(20)  NOT NULL,
 	CONSTRAINT Pk_Categorie PRIMARY KEY (IdCategorie)
-	 );  
-  
+	 );
+	   
+ 
 CREATE TABLE Reservations ( 
 	IdReservation		int NOT NULL    IDENTITY,
 	IdProduit           int NOT NULL ,
@@ -43,7 +96,7 @@ CREATE TABLE Reservations (
 	CONSTRAINT Pk_Reservations PRIMARY KEY ( IdReservation )
  );
 
-  
+   
 CREATE TABLE Utilisateurs ( 
 	IdUtilisateur	int NOT NULL    IDENTITY,
 	Nom				nvarchar(60) ,
