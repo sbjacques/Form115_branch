@@ -2,6 +2,15 @@ USE form115
 
 --suppression des tables de la BDD Form115 si elles existent
 
+
+if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Reservations')
+
+DROP TABLE Reservations;
+
+if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Utilisateurs')
+
+DROP TABLE Utilisateurs;
+
 if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Produits')
 
 DROP TABLE Produits;
@@ -37,13 +46,7 @@ if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Continen
 DROP TABLE Continents;
 
 
-if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Utilisateurs')
 
-DROP TABLE Utilisateurs;
-
-if EXISTS (select name FROM sys.sysobjects WHERE type = 'U' and name = 'Reservations')
-
-DROP TABLE Reservations;
 
 
 
