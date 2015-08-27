@@ -3,6 +3,8 @@
     $("#listeRegions").change(loadPays);
     $("#listePays").change(loadVilles);
 
+    $("#SearchBtn").click(saveSearchOptions);
+
     // DateTimePicker
     $("#DateDepart").datepicker({
         format: "dd/mm/yyyy",
@@ -12,8 +14,6 @@
         todayHighlight: true,
         endDate: "-1d"
     });
-
-    $("#SearchBtn").onclick(saveSearchOptions);
 
 });
 

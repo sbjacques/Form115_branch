@@ -51,12 +51,12 @@ function chargerListeProduits() {
 }
 
 function loadSearchParams() {
-    var DateDepart = sessionStorage.getItem(DateDepart);
-    var Duree = sessionStorage.getItem(Duree);
+    var DateDepart = sessionStorage.getItem("DateDepart");
+    var Duree = sessionStorage.getItem("Duree");
     //var NbPers = sessionStorage.getItem(NbPers);
 
     var DureeMin = (Duree != null) ? Math.max(1, Duree - 2) : 1;
-    var DureeMax = (Duree != null) ? Duree + 2 : null;
+    var DureeMax = (Duree != null) ? parseInt(Duree) + 2 : null;
 
     $("[name=DateDepart]").val(DateDepart);
     $("[name=DureeMinSejour]").val(DureeMin) ;
