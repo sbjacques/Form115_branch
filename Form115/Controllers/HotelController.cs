@@ -27,6 +27,18 @@ namespace Form115.Controllers
             return View(hvm);
         }
 
+        public ActionResult DetailsPeriode(int id, string DateDebut, string DateFin)
+        {
+            //Form115Entities db = new Form115Entities();
+            //Hotels hotel = db.Hotels.Where(h => h.IdHotel == id).First();
+            HotelViewModel hvm = new HotelViewModel
+            {
+                IdHotel = id
+            };
+            return View(hvm);
+        }
+        
+
         [HttpPost]
         public JsonResult listeProduits(HotelViewModel hvm)
         {

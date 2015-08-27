@@ -8,7 +8,12 @@ using System.Web.Routing;
 namespace Form115 {
     public class RouteConfig {
         public static void RegisterRoutes(RouteCollection routes) {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            
+            routes.MapRoute(
+                "Blog",                                           // Route name
+                "Hotel/Details/{id}/{startDate}/{endDate}",       // URL with parameters
+                new { controller = "Hotel", action = "DetailsPeriode" }  // Parameter defaults
+            );
 
             routes.MapRoute(
                 name: "Default",
