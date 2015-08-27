@@ -43,12 +43,13 @@
                 @RenderBody()
             </div>
             <div class="col-lg-2">
-               @*@Html.Action("Statistiques", "Admin")*@
+
+               @Html.Action("Statistiques", "Home")
             </div>            
             <hr />
             
         </div>
-        <footer>
+        <footer class="bottom-right">
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
      </div>

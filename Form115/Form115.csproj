@@ -353,6 +353,7 @@
     <Content Include="Views\Search\Result.cshtml" />
     <Content Include="Views\Hotel\Details.cshtml" />
     <Content Include="Views\Browse\Index.cshtml" />
+    <Content Include="Views\Shared\_Statistiques.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
