@@ -79,9 +79,9 @@ namespace Form115.Controllers
             return s.GetResult().ToList();
         }
 
-        public PartialViewResult PartialSearchResult(string nom, string ville, string photo, int id)
+        public PartialViewResult PartialSearchResult(int id)
         {
-            return PartialView("_SearchResutPartialView", new Tuple<string, string, string, int>(nom,ville,photo,id));
+            return PartialView("_SearchResutPartialView", _db.Hotels.Find(id));
         }
     
     }

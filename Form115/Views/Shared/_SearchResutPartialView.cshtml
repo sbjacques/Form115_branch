@@ -1,7 +1,6 @@
-﻿@model Tuple<string, string, string, int>
-           @*Nom hôte, Ville hôtel, photo path, id hotel*@
+﻿@model DataLayer.Models.Hotels
 
-<h3 class="nom">@Model.Item1</h3>
-<p class="ville">@Model.Item2</p>
+<h3 class="nom">@Model.Nom</h3>
+<p class="ville">@Model.Villes.name</p>
 @*@Html.ActionLink("Voir les séjours", "Details", new { id = @Model.Item4, @class="id", controller = "Hotel" })*@
-<a class="id" href="/Hotel/Details/@Model.Item4">Voir les séjours</a>
+<a class="id" href="/Hotel/Details/@Model.IdHotel">Voir les séjours</a>

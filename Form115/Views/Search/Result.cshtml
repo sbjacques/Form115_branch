@@ -7,7 +7,7 @@
 @foreach (var hotel in Model)
 {
     <div class="form-group-sm-4">
-        @Html.Action("PartialSearchResult", "Search", new { nom=hotel.Nom, ville=hotel.Villes.name, photo=hotel.Photo, id = hotel.IdHotel})
+        @Html.Action("PartialSearchResult", "Search", new { id = hotel.IdHotel})
         
     </div>
 }

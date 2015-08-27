@@ -7,12 +7,12 @@
 
     // DateTimePicker
     $("#DateDepart").datepicker({
-        format: "dd/mm/yyyy",
+        format: "mm/dd/yyyy",
         todayBtn: "linked",
         language: "fr",
         autoclose: true,
         todayHighlight: true,
-        endDate: "-1d"
+        minDate: "+1d"
     });
 
 });
@@ -82,7 +82,7 @@ function loadPays() {
 function loadVilles() {
     IdPays = $("#listePays").val();
     var str = '<option value="0">Sélectionner une ville</option>';
-    if (IdPays != null) {
+    if (IdPays != 0) {
         $.getJSON("/Browse/GetJSONVilles/" + IdPays, function (data) {
 
             // $.each(data, function (idx, mar) {

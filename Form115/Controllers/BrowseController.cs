@@ -19,28 +19,17 @@ namespace Form115.Controllers
         {
             var svm = new BrowseViewModel();
 
-            //svm.ListeContinents = _db.Continents.Select(c => new { Key = c.idContinent, Value = c.name }).ToDictionary(x => x.Key, x => x.Value);
-            svm.ListeContinents = _db.Continents.Where( c => _db.Hotels.Select(h => h.Villes.Pays.Regions.idContinent).Contains(c.idContinent))
+            svm.ListeContinents = _db.Continents.Where( c => _db.Hotels
+                                                                .Select(h => h.Villes.Pays.Regions.idContinent)
+                                                                .Contains(c.idContinent))
                                                 .Select(c => new { Key = c.idContinent, Value = c.name })
                                                 .ToDictionary(x => x.Key, x => x.Value);
             SearchBase s = new Search();
             ViewBag.BestHotels = (new SearchOptionBestSort(s)).GetResult().Take(2).ToList();
-            //ViewBag.BestHotels = _db.Reservations.GroupBy(r => r.Produits.Sejours.IdHotel,
-            //                    r => r.Quantity,
-            //                    (key, g) => new { Hotel = _db.Hotels.Where(h => h.IdHotel == key).FirstOrDefault(), SommeRes = g.Sum() })
-            //                                                                    .OrderByDescending(o => o.SommeRes)
-            //                                                                    .Select(o => o.Hotel)
-            //                                                                    .Where(h => h != null)
-            //                                                                    .Take(2)
-            //                                                                    .ToList();
+            
             return View(svm);
         }
-
-        //public static Dictionary<int, string> GetListeContinents()
-        //{
-
-        //}
-
+        
         public JsonResult GetJsonRegions(int id)
         {
             var result = _db.Continents
@@ -62,9 +51,7 @@ namespace Form115.Controllers
                             .ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
-
-
+        
         public JsonResult GetJsonVilles(string id)
         {
             var result = _db.Pays
@@ -76,32 +63,11 @@ namespace Form115.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        //public JsonResult GetJsonHotels(int id)
-        //{
-        //    var result = _db.Villes
-        //                    .Find(id)
-        //                    .Hotels
-        //                    // TODO  remetre Nom quand nouvelle base de données
-        //                    .Select(h => new { Id = h.IdHotel, Nom = h.Description })
-        //                    .ToList();
-        //    return Json(result, JsonRequestBehavior.AllowGet);
-        //}
-
+     
         public JsonResult GetJsonBestHotels(int continent, int region, string pays, int ville){
             SearchBase s = new Search();
             s = new SearchOptionDestination(s, continent, region, pays, ville);
            
-            //var result = _db.Reservations
-            //                             .AsEnumerable()
-            //                             .GroupBy(r => r.Produits.Sejours.IdHotel,
-            //                                            r => r.Quantity,
-            //                                                (key, g) => new { Hotel = res.Where(h => h.IdHotel == key).FirstOrDefault(), SommeRes = g.Sum() })
-            //                             .OrderByDescending(o => o.SommeRes)
-            //                             .Select(o => o.Hotel)
-            //                             .Where(h => h != null)
-            //                             .ToList()
-            //                             .Select(h => new { nom = h.Nom, ville = h.Villes.name, photo = h.Photo, id = h.IdHotel })
-            //                             .Take(2);
 
             return Json((new SearchOptionBestSort(s)).GetResult().Select(h => new { nom = h.Nom, ville = h.Villes.name.Trim(), photo = h.Photo, id = h.IdHotel }).Take(2).ToList(), JsonRequestBehavior.AllowGet);
 

@@ -35,7 +35,7 @@ namespace Form115.Infrastructure.Search.Options
             {
                 return SearchBase.GetResult().Where(h => h.IdVille == _idVille);
             }
-            else if (_idPays != null)
+            else if (_idPays != null && _idPays != "0")
             {
                 return SearchBase.GetResult()
                                 .Where(h => h.Villes.CodeIso3 == _idPays);
