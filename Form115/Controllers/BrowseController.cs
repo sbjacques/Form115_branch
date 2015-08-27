@@ -103,7 +103,7 @@ namespace Form115.Controllers
             //                             .Select(h => new { nom = h.Nom, ville = h.Villes.name, photo = h.Photo, id = h.IdHotel })
             //                             .Take(2);
 
-            return Json((new SearchOptionBestSort(s)).GetResult().Take(2).ToList(), JsonRequestBehavior.AllowGet);
+            return Json((new SearchOptionBestSort(s)).GetResult().Select(h => new { nom = h.Nom, ville = h.Villes.name.Trim(), photo = h.Photo, id = h.IdHotel }).Take(2).ToList(), JsonRequestBehavior.AllowGet);
 
         }
     }

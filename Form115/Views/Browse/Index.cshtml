@@ -18,9 +18,14 @@
         <li><a class="Continents" href="#" id="@continent.Key">@continent.Value</a></li>
     }
 </ul>
-@foreach (var hotel in ViewBag.BestHotels)
-{
-    <div class="sm-4">
-        @Html.Action("PartialSearchResult", "Search", new { nom = hotel.Nom, ville = hotel.Villes.name, photo = hotel.Photo, id = hotel.IdHotel });
-    </div>
+@{
+    int cpt = 0;
+    foreach (var hotel in ViewBag.BestHotels)
+    {
+        <text><div class="partial_view_search_result sm-4" id="@String.Format("partial_view_search_result{0}",cpt)">
+
+    @Html.Action("PartialSearchResult", "Search", new { nom = hotel.Nom, ville = hotel.Villes.name, photo = hotel.Photo, id = hotel.IdHotel });
+</div></text>
+        cpt++;
+    }
 }
