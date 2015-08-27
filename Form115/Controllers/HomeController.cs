@@ -40,5 +40,16 @@ namespace Form115.Controllers {
             return PartialView("_Statistiques",result);
             
         }
+
+        [ChildActionOnly]
+        public PartialViewResult ProchainsProduits()
+        {
+            //var listMarques = new List<string> { "Tesla", "GTM Sport", "Traban" };
+            //var listMarques = (new BestCarsEntities()).Voitures.Select(v => new { m = v.Types.Modeles.IdMarque, e = 1 }).GroupBy(l => l.m).Select();
+            var listeProduits = (new Form115Entities()).Produits.OrderBy(p => p.DateDepart).Take(10).ToList() ;
+
+            return PartialView("_ProchainsProduits", listeProduits);
+        }
+
     }
 }
