@@ -55,7 +55,10 @@ function loadSearchParams() {
     var Duree = sessionStorage.getItem(Duree);
     //var NbPers = sessionStorage.getItem(NbPers);
 
+    var DureeMin = (Duree != null) ? Math.max(1, Duree - 2) : 1;
+    var DureeMax = (Duree != null) ? Duree + 2 : null;
+
     $("[name=DateDepart]").val(DateDepart);
-    $("[name=DureeMinSejour]").val(Duree - 2);
-    $("[name=DureeMaxSejour]").val(Duree + 2);
+    $("[name=DureeMinSejour]").val(DureeMin) ;
+    $("[name=DureeMaxSejour]").val(DureeMax);
 }

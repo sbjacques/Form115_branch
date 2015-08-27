@@ -45,7 +45,13 @@
 
             <input type="hidden" name="IdHotel" value="@Model.IdHotel" />
 
-            <p>Durée du séjour : entre <input type="number" name="DureeMinSejour" /> et <input type="number" name="DureeMaxSejour" /> jours.</p>
+            <p>
+                Durée du séjour : entre 
+                    <input type="number" name="DureeMinSejour" style="width:5em" /> 
+                et 
+                    <input type="number" name="DureeMaxSejour" style="width:5em" /> 
+                jours.
+            </p>
 
             @*@{var nb_durees = @hotel.Sejours.Count();}
 
@@ -68,13 +74,13 @@
 <table>
     <thead>
         <tr>
-            <th style="width:30em">Date de départ</th>
+            <th style="width:20em">Date de départ</th>
             <th>Durée du séjour</th>
             <th style="text-align:right ; padding-left:9em">Prix</th>
             <th style="text-align:right ; padding-left:3em">Places restantes</th>
         </tr>
     </thead>
-    <tbody id="tbodyListeProduits" onchange="(function() {console.log('tbody rafraichi.') ;})()">
+    <tbody id="tbodyListeProduits">
         @foreach (var prod in sejour.Produits)
         {
             DateTime date = @prod.DateDepart;

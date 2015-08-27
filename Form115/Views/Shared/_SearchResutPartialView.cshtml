@@ -1,0 +1,5 @@
+﻿@model Tuple<string, string, string, int>
+
+<h3>@Model.Item1</h3>
+<p>@Model.Item2</p>
+@Html.ActionLink("Voir les séjours", "Details", new { id = @Model.Item4, controller = "Hotel" })

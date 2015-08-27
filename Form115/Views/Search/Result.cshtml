@@ -7,9 +7,7 @@
 @foreach (var hotel in Model)
 {
     <div class="form-group-sm-4">
-        <h3>@hotel.Nom</h3>
-        <p>@hotel.Description</p>@hotel.Description
-        @Html.ActionLink("Voir les séjours", "Details", new { id = @hotel.IdHotel, controller = "Hotel" })
+        @Html.Action("PartialSearchResult", "Search", new { nom=hotel.Nom, ville=hotel.Villes.name, photo=hotel.Photo, id = hotel.IdHotel})
         
     </div>
 }

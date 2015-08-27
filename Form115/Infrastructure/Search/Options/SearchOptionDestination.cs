@@ -38,31 +38,17 @@ namespace Form115.Infrastructure.Search.Options
             else if (_idPays != null)
             {
                 return SearchBase.GetResult()
-                                .Where(h => db.Pays
-                                            .Where(p => p.CodeIso3 == _idPays)
-                                            .Select(p => p.Villes.Contains(h.Villes))
-                                            .Any());
+                                .Where(h => h.Villes.CodeIso3 == _idPays);
             }
             else if (_idRegion != 0)
             {
                 return SearchBase.GetResult()
-                                .Where(h => db.Regions
-                                            .Where( r => r.idRegion == _idRegion)
-                                            .Select(r=> r.Pays
-                                                        .Where(p => p.CodeIso3 == _idPays)
-                                                        .Select(p => p.Villes.Contains(h.Villes)))
-                                            .Any());
+                                .Where(h => h.Villes.Pays.idRegion == _idRegion);
             }
             else if (_idContinent != 0)
             {
                 return SearchBase.GetResult()
-                                .Where(h => db.Continents
-                                            .Where( c => c.idContinent == _idContinent)
-                                            .Select(c=> c.Regions
-                                                         .Select(r => r.Pays.Where(p => p.CodeIso3 == _idPays)
-                                                                            .Select(p => p.Villes.Contains(h.Villes))))
-                                                         
-                                            .Any());
+                                .Where(h => h.Villes.Pays.Regions.idContinent == _idContinent);
             }
             else
             {
