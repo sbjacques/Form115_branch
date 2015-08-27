@@ -6,9 +6,10 @@
     $('#DateDepart').datepicker({
         format: "dd/mm/yyyy",
         todayBtn: "linked",
-        language: auto,
+        language: 'fr',
         autoclose: true,
         todayHighlight: true,
+        mindate:"0",
         endDate: "-1d"
     });
 
