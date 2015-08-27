@@ -7,6 +7,14 @@
 });
 
 
+function updateSearchResultpartialViews(data) {    
+    $.each(data, function (idx, hotel) {
+        $('#partial_view_search_result' + idx).children('h3.nom').html(hotel.nom);
+        $('#partial_view_search_result' + idx).children('p.ville').html(hotel.ville);
+        $('#partial_view_search_result' + idx).children('a.id').prop('href', '/Hotel/Details/' + hotel.id)
+    });
+}
+
 function onSelectContinent(idContinent, nomContinent) {
     loadRegions(idContinent);
     $("#texteChoix").html("Choix de la région");
@@ -17,15 +25,7 @@ function onSelectContinent(idContinent, nomContinent) {
 
     // Vues partielles adaptées au continent
     $.getJSON('/Browse/GetJsonBestHotels/?continent=' + idContinent + '&region=0&ville=0', function (data) {
-        console.log(data);
-        $.each(data, function (idx, hotel) {
-            $('#partial_view_search_result' + idx).children('h3.nom').html(hotel.nom);
-            console.log(hotel.nom);
-            $('#partial_view_search_result' + idx).children('p.ville').html(hotel.ville);
-            console.log(hotel.ville);
-            $('#partial_view_search_result' + idx).children('p.id').prop('href', '/Hotel/Details/' + hotel.id)
-            console.log(hotel.id);
-        });
+        updateSearchResultpartialViews(data);
     });
 
 }
@@ -45,15 +45,7 @@ function onSelectRegion(idRegion, nomRegion) {
 
     // Vues partielles adaptées à la région
     $.getJSON('/Browse/GetJsonBestHotels/?continent=1&region=' + idRegion + '&ville=0', function (data) {
-        console.log(data);
-        $.each(data, function (idx, hotel) {
-            $('#partial_view_search_result' + idx).children('h3.nom').html(hotel.nom);
-            console.log(hotel.nom);
-            $('#partial_view_search_result' + idx).children('p.ville').html(hotel.ville);
-            console.log(hotel.ville);
-            $('#partial_view_search_result' + idx).children('p.id').prop('href', '/Hotel/Details/' + hotel.id)
-            console.log(hotel.id);
-        });
+        updateSearchResultpartialViews(data);
     });
 }
 
@@ -76,15 +68,7 @@ function onSelectPays(idPays, nomPays) {
 
     // Vues partielles adaptées au Pays
     $.getJSON('/Browse/GetJsonBestHotels/?continent=1&region=0&Pays=' + idPays + '&ville=0', function (data) {
-        console.log(data);
-        $.each(data, function (idx, hotel) {
-            $('#partial_view_search_result' + idx).children('h3.nom').html(hotel.nom);
-            console.log(hotel.nom);
-            $('#partial_view_search_result' + idx).children('p.ville').html(hotel.ville);
-            console.log(hotel.ville);
-            $('#partial_view_search_result' + idx).children('p.id').prop('href', '/Hotel/Details/' + hotel.id)
-            console.log(hotel.id);
-        });
+        updateSearchResultpartialViews(data);
     });
 }
 
@@ -134,7 +118,7 @@ function loadVilles(IdPays) {
         $.getJSON("/Browse/GetJSONVilles/" + IdPays, function (data) {
 
             $.each(data, function (idx, ville) {
-                str += '<li><a class="Villes" href="Search/Result/' + ville.Id + '">' + ville.Nom + '</a></li>';
+                str += '<li><a class="Villes" href="/Search/Result/' + ville.Id + '">' + ville.Nom + '</a></li>';
             });
 
             $("#listeChoix").html(str);
