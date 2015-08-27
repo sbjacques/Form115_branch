@@ -14,12 +14,6 @@ namespace Form115.Infrastructure.Search.Options
 
     internal class SearchOptionBestSort : SearchOption
     {
-
-        private readonly int _idContinent;
-        private readonly int _idRegion;
-        private readonly string _idPays;
-        private readonly int _idVille;
-
         public SearchOptionBestSort(SearchBase sb)
             : base(sb)
         {
@@ -28,13 +22,16 @@ namespace Form115.Infrastructure.Search.Options
         public override IEnumerable<Hotels> GetResult()
         {
             var db = new Form115Entities();
-            return db.Reservations.GroupBy(r => r.Produits.Sejours.IdHotel,
-						        r => r.Quantity,
-								(key, g) => new {Hotel = SearchBase.GetResult().Where(h => h.IdHotel == key).FirstOrDefault(), SommeRes = g.Sum()})
-			                                                                    .OrderByDescending(o => o.SommeRes)
-			                                                                    .Select(o => o.Hotel)
-			                                                                    .Where(h => h != null)
-			                                                                    .ToList();          
+            var hotels = SearchBase.GetResult();
+            return db.Reservations
+                                         .AsEnumerable()
+                                         .GroupBy(r => r.Produits.Sejours.IdHotel,
+                                                        r => r.Quantity,
+                                                            (key, g) => new { Hotel = hotels.Where(h => h.IdHotel == key).FirstOrDefault(), SommeRes = g.Sum() })
+                                         .OrderByDescending(o => o.SommeRes)
+                                         .Select(o => o.Hotel)
+                                         .Where(h => h != null)
+                                         .ToList();    
         }
     }
 }

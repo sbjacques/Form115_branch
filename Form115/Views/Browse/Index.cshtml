@@ -18,3 +18,9 @@
         <li><a class="Continents" href="#" id="@continent.Key">@continent.Value</a></li>
     }
 </ul>
+@foreach (var hotel in ViewBag.BestHotels)
+{
+    <div class="sm-4">
+        @Html.Action("PartialSearchResult", "Search", new { nom = hotel.Nom, ville = hotel.Villes.name, photo = hotel.Photo, id = hotel.IdHotel });
+    </div>
+}

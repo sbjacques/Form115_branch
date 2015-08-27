@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using DataLayer.Models;
 using Form115.Models;
+using Form115.Infrastructure.Search;
+using Form115.Infrastructure.Search.Base;
+using Form115.Infrastructure.Search.Options;
 
 namespace Form115.Controllers
 {
@@ -20,7 +23,16 @@ namespace Form115.Controllers
             svm.ListeContinents = _db.Continents.Where( c => _db.Hotels.Select(h => h.Villes.Pays.Regions.idContinent).Contains(c.idContinent))
                                                 .Select(c => new { Key = c.idContinent, Value = c.name })
                                                 .ToDictionary(x => x.Key, x => x.Value);
-
+            SearchBase s = new Search();
+            ViewBag.BestHotels = (new SearchOptionBestSort(s)).GetResult().Take(2).ToList();
+            //ViewBag.BestHotels = _db.Reservations.GroupBy(r => r.Produits.Sejours.IdHotel,
+            //                    r => r.Quantity,
+            //                    (key, g) => new { Hotel = _db.Hotels.Where(h => h.IdHotel == key).FirstOrDefault(), SommeRes = g.Sum() })
+            //                                                                    .OrderByDescending(o => o.SommeRes)
+            //                                                                    .Select(o => o.Hotel)
+            //                                                                    .Where(h => h != null)
+            //                                                                    .Take(2)
+            //                                                                    .ToList();
             return View(svm);
         }
 
@@ -75,5 +87,24 @@ namespace Form115.Controllers
         //    return Json(result, JsonRequestBehavior.AllowGet);
         //}
 
+        public JsonResult GetJsonBestHotels(int continent, int region, string pays, int ville){
+            SearchBase s = new Search();
+            s = new SearchOptionDestination(s, continent, region, pays, ville);
+           
+            //var result = _db.Reservations
+            //                             .AsEnumerable()
+            //                             .GroupBy(r => r.Produits.Sejours.IdHotel,
+            //                                            r => r.Quantity,
+            //                                                (key, g) => new { Hotel = res.Where(h => h.IdHotel == key).FirstOrDefault(), SommeRes = g.Sum() })
+            //                             .OrderByDescending(o => o.SommeRes)
+            //                             .Select(o => o.Hotel)
+            //                             .Where(h => h != null)
+            //                             .ToList()
+            //                             .Select(h => new { nom = h.Nom, ville = h.Villes.name, photo = h.Photo, id = h.IdHotel })
+            //                             .Take(2);
+
+            return Json((new SearchOptionBestSort(s)).GetResult().Take(2).ToList(), JsonRequestBehavior.AllowGet);
+
+        }
     }
 }
