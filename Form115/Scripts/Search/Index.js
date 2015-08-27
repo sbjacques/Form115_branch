@@ -111,8 +111,8 @@ function saveSearchOptions() {
     // IdPays = $("#listePays").val();
     // IdVille = $("#listeVille").val();
     var DateDepart = $("#DateDepart").val();
-    var Duree = $("Duree").val();
-    var NbPers = $("NbPers").val();
+    var Duree = $("#Duree").val();
+    var NbPers = $("#NbPers").val();
     sessionStorage.setItem(DateDepart, DateDepart);
     sessionStorage.setItem(Duree, Duree);
     sessionStorage.setItem(NbPers, NbPers);
