@@ -19,7 +19,7 @@
         loadRegions($(this).prop("id"));
         $("#texteChoix").html("Choix de la région");
         //$("#BreadCrumb").html('Parcourir le catalogue >> <a href="Browse" id="Continents">Continents</a> >> Régions');
-        $("#BreadCrumb").html('Parcourir le catalogue >> <a href="Browse" id="Continents">Continents</a> >> <a href="#" id="Continent">' + $(this).html() + '</a> >> Pays');
+        $("#BreadCrumb").html('Parcourir le catalogue >> <a href="Browse" id="Continents">Continents</a> >> <span href="#" id="Continent">' + $(this).html() + '</span> ');
         
         return false;
     });
@@ -40,12 +40,20 @@ function loadRegions(IdContinent) {
             $("a.Regions").click(function () {
                 loadPays($(this).prop("id"));
                 $("#texteChoix").html("Choix du pays");
-                $("#BreadCrumb").html('Parcourir le catalogue >> <a href="Browse" id="Continents">Continents</a> >> <a href="#" id="Continent">' + $(this).html() + '</a> >> Pays');
+                $("#BreadCrumb").html('Parcourir le catalogue >> <a href="Browse" id="Continents">Continents</a> >> <a href="#" id="Continent">' + $("#Continent").html() + '</a> >> <span href="#" id="Region">' + $(this).html() + '</span> ');
+                $("#Continent").click(function () {
+
+                    loadRegions(IdContinent);
+                    $("#texteChoix").html("Choix de la région");
+
+                    $("#BreadCrumb").html('Parcourir le catalogue >> <a href="Browse" id="Continents">Continents</a> >> <span href="#" id="Continent">' + $("#Continent").html() + '</span> ');
+                    $('#Continent').data('id', IdContinent);
+                });
             });
-            $("#Regions").click(function () {
-                loadRegions(IdContinent);
-                $("#texteChoix").html("Choix du pays");
-            });
+            //$("#Regions").click(function () {
+            //    loadRegions(IdContinent);
+            //    $("#texteChoix").html("Choix du pays");
+            //});
         });
         
         
@@ -63,10 +71,34 @@ function loadPays(IdRegion) {
 
             $("#listeChoix").html(str);
             $("a.Pays").click(function () {
+
                 loadVilles($(this).prop("id"));
                 $("#texteChoix").html("Choix de la ville");
+
+                IdContinent = $('#Continent').data('id');
+                $("#BreadCrumb").html('Parcourir le catalogue >> <a href="Browse" id="Continents">Continents</a> >> <a href="#" id="Continent">' + $("#Continent").html() + '</a> >> <a href="#" id="Region">' + $("#Region").html() + '</a> >> <span href="#" id="Pays">' + $(this).html() + '</span> ');
+                $('#Continent').data('id', IdContinent);
+                $("#Continent").click(function () {
+                    loadRegions(IdContinent);
+                    $("#texteChoix").html("Choix de la région");
+
+                    $("#BreadCrumb").html('Parcourir le catalogue >> <a href="Browse" id="Continents">Continents</a> >> <span href="#" id="Continent">' + $("#Continent").html() + '</span> ');
+                });
+                $("#Region").click(function () {
+
+                    loadPays(IdRegion);
+                    $("#texteChoix").html("Choix du pays");
+
+                    $("#BreadCrumb").html('Parcourir le catalogue >> <a href="Browse" id="Continents">Continents</a> >> <a href="#" id="Continent">' + $("#Continent").html() + '</a> >> <span href="#" id="Region">' + $(this).html() + '</span> ');
+                    $('#Continent').data('id', IdContinent);
+                    $("#Continent").click(function () {
+                        loadRegions(IdContinent);
+                        $("#BreadCrumb").html('Parcourir le catalogue >> <a href="Browse" id="Continents">Continents</a> >> <span href="#" id="Continent">' + $("#Continent").html() + '</span> ');
+                        $("#texteChoix").html("Choix de la région");
+                    });
+                });
             });
-        });
+            });
     }
 }
 
@@ -77,14 +109,10 @@ function loadVilles(IdPays) {
         $.getJSON("/Browse/GetJSONVilles/" + IdPays, function (data) {
 
             $.each(data, function (idx, ville) {
-                str += '<li><a class="Villes" href="#" id="' + ville.Id + '">' + ville.Nom + '</a></li>';
+                str += '<li><a class="Villes" href="Search/Result/' + ville.Id + '">' + ville.Nom + '</a></li>';
             });
 
             $("#listeChoix").html(str);
-            $("a.Villes").click(function () {
-                loadHotels($(this).prop("id"));
-                $("#texteChoix").html("Choix de la ville");
-            });
         });
     }
 }

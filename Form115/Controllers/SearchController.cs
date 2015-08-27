@@ -30,6 +30,16 @@ namespace Form115.Controllers
             return View(svm);
         }
 
+
+
+        public ActionResult Result(int id)
+        {
+            var svm = new SearchViewModel { Ville = id };
+            var result = GetSearchResult(svm);
+
+            return View(result);
+        }
+
         [HttpPost]
         public ActionResult Result(SearchViewModel svm)
         {
