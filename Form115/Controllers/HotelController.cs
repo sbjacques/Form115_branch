@@ -31,11 +31,15 @@ namespace Form115.Controllers
         public JsonResult listeProduits(HotelViewModel hvm)
         {
             Form115Entities db = new Form115Entities();
-            DateTime dateRecue = DateTime.Parse(hvm.DateDepart);
-            var result = db.Produits.Where(p => p.Sejours.IdHotel == hvm.IdHotel)
-                            .Where(p=>p.Sejours.Duree >= hvm.DureeMinSejour && p.Sejours.Duree<=hvm.DureeMaxSejour)
-                            .Where(p=>DateTime.Compare(p.DateDepart,dateRecue)>=0)
-                            .Select(p => new { 
+            var prods = db.Produits.Where(p => p.Sejours.IdHotel == hvm.IdHotel)
+                            .Where(p=>p.Sejours.Duree >= hvm.DureeMinSejour) ; 
+            if (hvm.DureeMaxSejour != null) {
+                prods = prods.Where(p=>p.Sejours.Duree<=hvm.DureeMaxSejour) ;         
+            }
+            if (hvm._dateDepart!=null) {
+                prods = prods.Where(p=>p.DateDepart >= hvm._dateDepart) ;
+            } 
+            var result = prods.Select(p => new { 
                                 date = p.DateDepart.ToString(), 
                                 duree = p.Sejours.Duree,
                                 prix = p.Prix, 
