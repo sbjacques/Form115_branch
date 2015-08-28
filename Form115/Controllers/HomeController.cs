@@ -49,5 +49,21 @@ namespace Form115.Controllers {
             return PartialView("_ProchainsProduits", listeProduits);
         }
 
+        [ChildActionOnly]
+        public PartialViewResult BestPromo()
+        {
+            var db = new Form115Entities();
+
+            var countPromo = db.Promotions.Where(x => x.DateDebut > DateTime.Now).Count();
+            var listPromo = db.Promotions.Where(x => x.DateDebut > DateTime.Now).OrderBy(x=>x.DateDebut).Take(5).ToList();
+
+            //créer une liste avec résultats
+            //var result = new Tuple<omo> {
+             
+
+
+            return PartialView("_BestPromo", result);
+
+        }
     }
 }
