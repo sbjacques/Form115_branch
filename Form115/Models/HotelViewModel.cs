@@ -34,5 +34,43 @@ namespace Form115.Models
             }
         }
 
+        // Gestion de l'affichage des séjours d'un hôtel sur une période
+        public DateTime _dateDebut;
+        public string DateDebut
+        {
+            get { return _dateDebut.ToString(); }
+            set
+            {
+                if (value == "") { _dateDebut = DateTime.Now; }
+                else
+                {
+                    string format = "yyyy-MM-dd";
+                    if (!DateTime.TryParseExact(value, format, CultureInfo.InvariantCulture,
+                        DateTimeStyles.None, out _dateDebut))
+                    {
+                        _dateDebut = DateTime.Now;
+                    }
+                }
+            }
+        }
+        public DateTime _dateFin;
+        public string DateFin
+        {
+            get { return _dateFin.ToString(); }
+            set
+            {
+                if (value == "") { _dateFin = DateTime.MaxValue; }
+                else
+                {
+                    string format = "yyyy-MM-dd";
+                    if (!DateTime.TryParseExact(value, format, CultureInfo.InvariantCulture,
+                        DateTimeStyles.None, out _dateFin))
+                    {
+                        _dateFin = DateTime.MaxValue;
+                    }
+                }
+            }
+        }
+
     }
 }
