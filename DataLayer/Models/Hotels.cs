@@ -17,6 +17,7 @@ namespace DataLayer.Models
         public Hotels()
         {
             this.Sejours = new HashSet<Sejours>();
+            this.Promotions = new HashSet<Promotions>();
         }
     
         public int IdHotel { get; set; }
@@ -29,5 +30,6 @@ namespace DataLayer.Models
         public virtual Categories Categories { get; set; }
         public virtual ICollection<Sejours> Sejours { get; set; }
         public virtual Villes Villes { get; set; }
+        public virtual ICollection<Promotions> Promotions { get; set; }
     }
 }

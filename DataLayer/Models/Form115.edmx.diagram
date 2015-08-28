@@ -33,6 +33,9 @@
         <AssociationConnector Association="Form115Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="Form115Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="Form115Model.AspNetUserRoles" />
+        <EntityTypeShape EntityType="Form115Model.Promotions" Width="1.5" PointX="12" PointY="5" />
+        <AssociationConnector Association="Form115Model.Utilisateurs_Users_fk" />
+        <AssociationConnector Association="Form115Model.Promotion_Hotel_fk" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

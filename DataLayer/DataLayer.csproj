@@ -95,6 +95,9 @@
     <Compile Include="Models\Produits.cs">
       <DependentUpon>Form115.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Promotions.cs">
+      <DependentUpon>Form115.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Regions.cs">
       <DependentUpon>Form115.tt</DependentUpon>
     </Compile>

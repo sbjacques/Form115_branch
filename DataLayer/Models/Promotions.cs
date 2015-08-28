@@ -12,20 +12,14 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Utilisateurs
+    public partial class Promotions
     {
-        public Utilisateurs()
-        {
-            this.Reservations = new HashSet<Reservations>();
-        }
+        public int IdPromo { get; set; }
+        public int IdHotel { get; set; }
+        public System.DateTime DateDebut { get; set; }
+        public System.DateTime DateFin { get; set; }
+        public byte Valeur { get; set; }
     
-        public int IdUtilisateur { get; set; }
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-        public string Telephone { get; set; }
-        public string IdAspNetUsers { get; set; }
-    
-        public virtual ICollection<Reservations> Reservations { get; set; }
-        public virtual AspNetUsers AspNetUsers { get; set; }
+        public virtual Hotels Hotels { get; set; }
     }
 }
