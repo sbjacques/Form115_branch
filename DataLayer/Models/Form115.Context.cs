@@ -41,5 +41,6 @@ namespace DataLayer.Models
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Promotions> Promotions { get; set; }
+        public virtual DbSet<HotelTracking> HotelTracking { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace DataLayer.Models
         {
             this.Sejours = new HashSet<Sejours>();
             this.Promotions = new HashSet<Promotions>();
+            this.HotelTracking = new HashSet<HotelTracking>();
         }
     
         public int IdHotel { get; set; }
@@ -31,5 +32,6 @@ namespace DataLayer.Models
         public virtual ICollection<Sejours> Sejours { get; set; }
         public virtual Villes Villes { get; set; }
         public virtual ICollection<Promotions> Promotions { get; set; }
+        public virtual ICollection<HotelTracking> HotelTracking { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DataLayer.Models;
+﻿using Form115.Infrastructure.Filters;
+using DataLayer.Models;
 using Form115.Models;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Form115.Controllers
             return View();
         }
 
+        [HotelTrackerFilter]
         public ActionResult Details(int id)
         {
             //Form115Entities db = new Form115Entities();
@@ -28,6 +30,7 @@ namespace Form115.Controllers
             return View(hvm);
         }
 
+        [HotelTrackerFilter]
         public ActionResult DetailsPeriode(int id, string startDate, string endDate)
         {
             //Form115Entities db = new Form115Entities();
