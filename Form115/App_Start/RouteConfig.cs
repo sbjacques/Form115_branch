@@ -10,7 +10,7 @@ namespace Form115 {
         public static void RegisterRoutes(RouteCollection routes) {
             
             routes.MapRoute(
-                "Blog",                                           // Route name
+                        "HotelDetailsPeriode",                                           // Route name
                 "Hotel/Details/{id}/{startDate}/{endDate}",       // URL with parameters
                 new { controller = "Hotel", action = "DetailsPeriode" }  // Parameter defaults
             );

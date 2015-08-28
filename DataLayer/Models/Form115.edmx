@@ -91,6 +91,14 @@
           <Property Name="Description" Type="ntext" />
           <Property Name="Photo" Type="varchar" MaxLength="60" />
         </EntityType>
+        <EntityType Name="HotelTracking">
+          <Key>
+            <PropertyRef Name="IdHotelTracking" />
+          </Key>
+          <Property Name="IdHotelTracking" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateHT" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="IdHotel" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Pays">
           <Key>
             <PropertyRef Name="CodeIso3" />
@@ -228,6 +236,18 @@
             </Principal>
             <Dependent Role="AspNetUserRoles">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HotelTracking_Hotels">
+          <End Role="Hotels" Type="Self.Hotels" Multiplicity="1" />
+          <End Role="HotelTracking" Type="Self.HotelTracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotels">
+              <PropertyRef Name="IdHotel" />
+            </Principal>
+            <Dependent Role="HotelTracking">
+              <PropertyRef Name="IdHotel" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -373,6 +393,7 @@
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Continents" EntityType="Self.Continents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hotels" EntityType="Self.Hotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HotelTracking" EntityType="Self.HotelTracking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pays" EntityType="Self.Pays" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produits" EntityType="Self.Produits" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Promotions" EntityType="Self.Promotions" Schema="dbo" store:Type="Tables" />
@@ -396,6 +417,10 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HotelTracking_Hotels" Association="Self.fk_HotelTracking_Hotels">
+            <End Role="Hotels" EntitySet="Hotels" />
+            <End Role="HotelTracking" EntitySet="HotelTracking" />
           </AssociationSet>
           <AssociationSet Name="fk_produits_sejours" Association="Self.fk_produits_sejours">
             <End Role="Sejours" EntitySet="Sejours" />
@@ -476,6 +501,7 @@
           <NavigationProperty Name="Sejours" Relationship="Self.fk_sejours_hotels" FromRole="Hotels" ToRole="Sejours" />
           <NavigationProperty Name="Villes" Relationship="Self.Hotels_Villes_fk" FromRole="Hotels" ToRole="Villes" />
           <NavigationProperty Name="Promotions" Relationship="Form115Model.Promotion_Hotel_fk" FromRole="Hotels" ToRole="Promotions" />
+          <NavigationProperty Name="HotelTracking" Relationship="Form115Model.fk_HotelTracking_Hotels" FromRole="Hotels" ToRole="HotelTracking" />
         </EntityType>
         <EntityType Name="Pays">
           <Key>
@@ -746,6 +772,11 @@
             <End Role="Hotels" EntitySet="Hotels" />
             <End Role="Promotions" EntitySet="Promotions" />
           </AssociationSet>
+          <EntitySet Name="HotelTracking" EntityType="Form115Model.HotelTracking" />
+          <AssociationSet Name="fk_HotelTracking_Hotels" Association="Form115Model.fk_HotelTracking_Hotels">
+            <End Role="Hotels" EntitySet="Hotels" />
+            <End Role="HotelTracking" EntitySet="HotelTracking" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -870,6 +901,27 @@
               <PropertyRef Name="IdHotel" />
             </Principal>
             <Dependent Role="Promotions">
+              <PropertyRef Name="IdHotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HotelTracking">
+          <Key>
+            <PropertyRef Name="IdHotelTracking" />
+          </Key>
+          <Property Name="IdHotelTracking" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateHT" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="IdHotel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hotels" Relationship="Form115Model.fk_HotelTracking_Hotels" FromRole="HotelTracking" ToRole="Hotels" />
+        </EntityType>
+        <Association Name="fk_HotelTracking_Hotels">
+          <End Type="Form115Model.Hotels" Role="Hotels" Multiplicity="1" />
+          <End Type="Form115Model.HotelTracking" Role="HotelTracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotels">
+              <PropertyRef Name="IdHotel" />
+            </Principal>
+            <Dependent Role="HotelTracking">
               <PropertyRef Name="IdHotel" />
             </Dependent>
           </ReferentialConstraint>
@@ -1060,6 +1112,15 @@
                 <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
                 <ScalarProperty Name="IdHotel" ColumnName="IdHotel" />
                 <ScalarProperty Name="IdPromo" ColumnName="IdPromo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelTracking">
+            <EntityTypeMapping TypeName="Form115Model.HotelTracking">
+              <MappingFragment StoreEntitySet="HotelTracking">
+                <ScalarProperty Name="IdHotel" ColumnName="IdHotel" />
+                <ScalarProperty Name="DateHT" ColumnName="DateHT" />
+                <ScalarProperty Name="IdHotelTracking" ColumnName="IdHotelTracking" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

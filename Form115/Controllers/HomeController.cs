@@ -5,19 +5,24 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Form115.Controllers {
-    public class HomeController : Controller {
-        public ActionResult Index() {
+namespace Form115.Controllers
+{
+    public class HomeController : Controller
+    {
+        public ActionResult Index()
+        {
             return View();
         }
 
-        public ActionResult About() {
+        public ActionResult About()
+        {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact() {
+        public ActionResult Contact()
+        {
             ViewBag.Message = "Your contact page.";
 
             return View();
@@ -31,14 +36,14 @@ namespace Form115.Controllers {
             var listProduit = db.Produits.Where(x => x.DateDepart > DateTime.Now).Count();
             var listUtilisateurs = db.Utilisateurs.Count();
 
-                          //créer une liste avec résultats
+            //créer une liste avec résultats
             var result = new List<int>{
                 listProduit, listUtilisateurs
             };
-            
 
-            return PartialView("_Statistiques",result);
-            
+
+            return PartialView("_Statistiques", result);
+
         }
 
         [ChildActionOnly]
@@ -53,17 +58,25 @@ namespace Form115.Controllers {
         public PartialViewResult BestPromo()
         {
             var db = new Form115Entities();
+                        
+            var lp = db.Promotions
+                .Where(r=>r.Hotels.Sejours
+                    .Where(s=>s.Produits
+                     .Where(p => p.DateDepart <= r.DateFin && p.DateDepart >= r.DateDebut && p.DateDepart > DateTime.Now).Any()).Any())
+                     .OrderByDescending (x=> x.Valeur);
+            
+            var countPromo=lp.Count();
 
-            var countPromo = db.Promotions.Where(x => x.DateDebut > DateTime.Now).Count();
-            var listPromo = db.Promotions.Where(x => x.DateDebut > DateTime.Now).OrderBy(x=>x.DateDebut).Take(5).ToList();
+            var listPromo = lp.Take(5).ToList();
 
-            //créer une liste avec résultats
-            //var result = new Tuple<omo> {
+            //.Select(x => new Tuple<string, int>(x.Marque, x.Nombre))
+            var result = new Tuple<List<Promotions>, int> (listPromo, countPromo);
 
-
-
-            return PartialView("_BestPromo", listPromo);
+            return PartialView("_BestPromo",result);
 
         }
+
+
+
     }
 }

@@ -10,8 +10,8 @@
 
     loadSearchParams();
 
-    chargerListeProduits();
     $("input").change(chargerListeProduits);
+    chargerListeProduits();
 });
 
 function chargerListeProduits() {
@@ -21,7 +21,9 @@ function chargerListeProduits() {
         IdHotel: $("[name=IdHotel]").val(),
         DateDepart: $("[name=DateDepart]").val(),
         DureeMinSejour: $("[name=DureeMinSejour]").val(),
-        DureeMaxSejour: $("[name=DureeMaxSejour]").val()  
+        DureeMaxSejour: $("[name=DureeMaxSejour]").val(),
+        DateDebut: $("[name=DateDebut]").val(),
+        DateFin: $("[name=DateFin]").val(),
     };
     console.log(obj);
     $.post(
@@ -41,7 +43,10 @@ function chargerListeProduits() {
                     str += "<td>" + item.duree + " jours</td>";
                     // TODO CSS
                     if (item.promotions == 0) {
-                        str += "<td style='text-align:right'>" + item.prix + " euros</td>";
+                        str += "<td style='text-align:right'>" + item.prix + "€</td>";
+                    }
+                    else {
+                        str += "<td style='text-align:right'><s>" + item.prix + '€</s> <span class="alert-info">' + item.prixSolde + "€</span> </td>";
                     }
                     str += "<td style='text-align:right'>" + item.nb_restants + "</td>";
                     str += "</tr>";

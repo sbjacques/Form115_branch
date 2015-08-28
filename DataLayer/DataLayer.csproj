@@ -90,6 +90,9 @@
     <Compile Include="Models\Hotels.cs">
       <DependentUpon>Form115.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HotelTracking.cs">
+      <DependentUpon>Form115.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Pays.cs">
       <DependentUpon>Form115.tt</DependentUpon>
     </Compile>

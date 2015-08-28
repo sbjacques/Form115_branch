@@ -11,7 +11,7 @@ namespace DataLayer.Models
     {
         private Form115Entities _db = new Form115Entities();
 
-        public byte GetPromotions
+        public byte Promotions
         {
             get
             {
@@ -19,6 +19,19 @@ namespace DataLayer.Models
                                      .Where(p => (p.DateDebut <= DateDepart) && (p.DateFin >= DateDepart))
                                      .Select(p => p.Valeur)
                                      .FirstOrDefault();
+            }
+
+        }
+
+        public decimal? PrixSolde
+        {
+            get
+            {
+                return (100 - Sejours.Hotels.Promotions
+                                     .Where(p => (p.DateDebut <= DateDepart) && (p.DateFin >= DateDepart))
+                                     .Select(p => p.Valeur)
+                                     .FirstOrDefault())
+                       * Prix /100;
             }
 
         }

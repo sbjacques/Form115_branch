@@ -20,12 +20,13 @@
 
         public override IEnumerable<Hotels> GetResult()
         {
-            return SearchBase.GetResult();
-                            //.Where(x => x.Sejours
-                            //              .Select(s => s.Produits
-                            //                            .Where(p => Math.Abs((p.DateDepart - _dateDepart).TotalDays) <= 10
-                            //                                            && p.DateDepart.CompareTo(DateTime.Now) >= 0))
-                            //              .Any());
+            return SearchBase.GetResult()
+                            .Where(x => x.Sejours
+                                          .Where(s => s.Produits
+                                                        .Where(p => Math.Abs((p.DateDepart - _dateDepart).TotalDays) <= 10
+                                                                        && p.DateDepart.CompareTo(DateTime.Now) >= 0).Any())
+                                          .Any())
+                                          .Distinct();
         }
     }
 }

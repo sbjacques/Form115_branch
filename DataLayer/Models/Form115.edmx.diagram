@@ -35,6 +35,8 @@
         <EntityTypeShape EntityType="Form115Model.Promotions" Width="1.5" PointX="12" PointY="5" />
         <AssociationConnector Association="Form115Model.Utilisateurs_Users_fk" />
         <AssociationConnector Association="Form115Model.Promotion_Hotel_fk" />
+        <EntityTypeShape EntityType="Form115Model.HotelTracking" Width="1.5" PointX="12" PointY="0.75" />
+        <AssociationConnector Association="Form115Model.fk_HotelTracking_Hotels" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
