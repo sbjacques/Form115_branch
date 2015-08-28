@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Businesslayer\Hotels.cs" />
+    <Compile Include="Businesslayer\Produits.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Models\AspNetRoles.cs">
       <DependentUpon>Form115.tt</DependentUpon>
@@ -105,9 +106,6 @@
       <DependentUpon>Form115.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sejours.cs">
-      <DependentUpon>Form115.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Form115.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Utilisateurs.cs">

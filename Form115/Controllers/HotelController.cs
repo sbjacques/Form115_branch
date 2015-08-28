@@ -55,6 +55,7 @@ namespace Form115.Controllers
                                 date = p.DateDepart.ToString(), 
                                 duree = p.Sejours.Duree,
                                 prix = p.Prix, 
+                                //promotions = p.GetPromotions,
                                 nb_restants = p.NbPlaces - p.Reservations.Sum(r => r.Quantity)
                             });
             return Json(result, JsonRequestBehavior.AllowGet);

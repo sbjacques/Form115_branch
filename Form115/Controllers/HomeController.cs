@@ -59,10 +59,10 @@ namespace Form115.Controllers {
 
             //créer une liste avec résultats
             //var result = new Tuple<omo> {
-             
 
 
-            return PartialView("_BestPromo", result);
+
+            return PartialView("_BestPromo", listPromo);
 
         }
     }

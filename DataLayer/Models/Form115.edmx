@@ -540,16 +540,6 @@
           <NavigationProperty Name="Hotels" Relationship="Self.fk_sejours_hotels" FromRole="Sejours" ToRole="Hotels" />
           <NavigationProperty Name="Produits" Relationship="Self.fk_produits_sejours" FromRole="Sejours" ToRole="Produits" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="Utilisateurs">
           <Key>
             <PropertyRef Name="IdUtilisateur" />
@@ -692,7 +682,6 @@
           <EntitySet Name="Regions" EntityType="Self.Regions" />
           <EntitySet Name="Reservations" EntityType="Self.Reservations" />
           <EntitySet Name="Sejours" EntityType="Self.Sejours" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateurs" />
           <EntitySet Name="Villes" EntityType="Self.Villes" />
           <AssociationSet Name="Hotels_Categories_fk" Association="Self.Hotels_Categories_fk">

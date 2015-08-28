@@ -39,7 +39,10 @@ function chargerListeProduits() {
                     str += "<tr>";
                     str += "<td>" + item.date + "</td>";
                     str += "<td>" + item.duree + " jours</td>";
-                    str += "<td style='text-align:right'>" + item.prix + " euros</td>";
+                    // TODO CSS
+                    if (item.promotions == 0) {
+                        str += "<td style='text-align:right'>" + item.prix + " euros</td>";
+                    }
                     str += "<td style='text-align:right'>" + item.nb_restants + "</td>";
                     str += "</tr>";
                 });

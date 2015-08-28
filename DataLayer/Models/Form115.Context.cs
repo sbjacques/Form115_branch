@@ -33,7 +33,6 @@ namespace DataLayer.Models
         public virtual DbSet<Regions> Regions { get; set; }
         public virtual DbSet<Reservations> Reservations { get; set; }
         public virtual DbSet<Sejours> Sejours { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Utilisateurs> Utilisateurs { get; set; }
         public virtual DbSet<Villes> Villes { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
