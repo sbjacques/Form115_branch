@@ -163,6 +163,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HotelsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProduitsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SejoursController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BrowseController.cs" />
@@ -225,7 +226,13 @@
     <Content Include="Areas\Admin\Views\Sejours\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Sejours\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Sejours\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\Admin\Promotion\Create.js" />
     <Content Include="Scripts\Admin\VenteProduit.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -238,8 +245,10 @@
     <Content Include="Scripts\DatePicker\css\bootstrap-datepicker3.min.css" />
     <Content Include="Scripts\DatePicker\css\bootstrap-datepicker3.standalone.css" />
     <Content Include="Scripts\DatePicker\css\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Scripts\DatePicker\css\jui.css" />
     <Content Include="Scripts\DatePicker\js\bootstrap-datepicker.js" />
     <Content Include="Scripts\DatePicker\js\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\DatePicker\js\jui.js" />
     <Content Include="Scripts\DatePicker\locales\bootstrap-datepicker.ar.min.js" />
     <Content Include="Scripts\DatePicker\locales\bootstrap-datepicker.az.min.js" />
     <Content Include="Scripts\DatePicker\locales\bootstrap-datepicker.bg.min.js" />

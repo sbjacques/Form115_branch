@@ -8,23 +8,17 @@ namespace DataLayer.Models
 {
     public partial class Hotels
     {
-        public void ajouterPromotion(DateTime debut, DateTime fin, int valeur)
+        public void ajouterPromotion(Form115Entities db, Promotions promo)
         {
-            bool commencePendantExistant = Promotions.Where(p=>p.DateDebut <= debut && p.DateFin >= debut).Count()!=0 ;
-            bool terminePendantExistant = Promotions.Where(p => p.DateDebut <= fin && p.DateFin >= fin).Count() != 0;
+            bool commencePendantExistant = Promotions.Where(p=>p.DateDebut <= promo.DateDebut && p.DateFin >= promo.DateDebut).Any() ;
+            bool terminePendantExistant = Promotions.Where(p => p.DateDebut <= promo.DateFin && p.DateFin >= promo.DateFin).Any() ;
             if (commencePendantExistant || terminePendantExistant)
             {
                 throw new Exception();
             }
             else 
             { 
-                Promotions promo = new Promotions {
-                    Hotels = this,
-                    DateDebut = debut,
-                    DateFin = fin,
-                    Valeur = (byte) valeur
-                } ;
-                (new Form115Entities()).Promotions.Add(promo) ;
+                db.Promotions.Add(promo) ;
             }
         }
     }
