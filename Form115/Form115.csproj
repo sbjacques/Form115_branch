@@ -169,6 +169,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PromotionsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -357,6 +358,8 @@
     <Content Include="Views\Shared\_Statistiques.cshtml" />
     <Content Include="Views\Shared\_SearchResutPartialView.cshtml" />
     <Content Include="Views\Shared\_ProchainsProduits.cshtml" />
+    <Content Include="Views\Shared\_BestPromo.cshtml" />
+    <Content Include="Views\Promotions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
