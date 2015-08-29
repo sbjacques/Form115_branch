@@ -45,7 +45,7 @@ namespace DataLayer.Models
 
         }
 
-        public virtual decimal? PrixSolde { get { return (100 - Promotion * Prix /100); }
+        public virtual decimal? PrixSolde { get { return (100 - Promotion )* Prix /100; }
 
         }
 
