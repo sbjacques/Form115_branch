@@ -19,14 +19,10 @@
             _prixMin = prixMin;
         }
 
-        public override IEnumerable<Hotels> GetResult()
+        public override IEnumerable<Produits> GetResult()
         {
             return _prixMin.HasValue
-                ? SearchBase.GetResult()
-                            .Where(x => x.Sejours
-                                          .Select(s => s.Produits
-                                                        .Where(p => p.Prix >= _prixMin))
-                                          .Any())
+                ? SearchBase.GetResult().Where(p => p.Prix >= _prixMin)
                 : SearchBase.GetResult();
         }
     }

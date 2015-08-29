@@ -21,9 +21,6 @@ namespace Form115.Controllers
         {
             var svm = new SearchViewModel();
 
-            svm.ListeContinents = _db.Continents.Where(c => _db.Hotels.Select(h => h.Villes.Pays.Regions.idContinent).Contains(c.idContinent))
-                                                .Select(c => new { Key = c.idContinent, Value = c.name })
-                                                .ToDictionary(x => x.Key, x => x.Value);
             // TODO classe Categorie qui renverra la liste des catégories (méthode statique)
             svm.ListeCategories = _db.Categories.Select(c => new { Key = c.IdCategorie, Value = c.Description }).ToDictionary(x => x.Key, x => x.Value);
             svm.DisponibiliteMax = _db.Produits.Select(p => p.NbPlaces).Max();
@@ -64,8 +61,16 @@ namespace Form115.Controllers
             return View(result);
         }
 
-        private static List<Hotels> GetSearchResult(SearchViewModel svm)
+        public static List<SearchResutPartialViewItem> GetSearchResult(BrowseViewModel bvm)
         {
+            SearchViewModel svm = new SearchViewModel(bvm);
+            return GetSearchResult(svm);
+        }
+
+        public static List<SearchResutPartialViewItem> GetSearchResult(SearchViewModel svm)
+        {
+            Form115Entities db = new Form115Entities();
+
             // Search et SearchOption héritent de SearchBase
             SearchBase s = new Search();
             s = new SearchOptionDestination(s, svm.Continent, svm.Region, svm.Pays, svm.Ville);
@@ -76,13 +81,22 @@ namespace Form115.Controllers
             s = new SearchOptionPrixMin(s, svm.PrixMin);
 
 
-            return s.GetResult().ToList();
+            return s.GetResult()
+                    .GroupBy(p => p.Sejours.Hotels.IdHotel,
+                             p => p,
+                             (key, g) => new SearchResutPartialViewItem
+                                             {
+                                                 Hotel = db.Hotels.Where(h => h.IdHotel == key).FirstOrDefault(),
+                                                 Produits = g.ToList()
+                                             })
+                    .ToList();
         }
 
         public PartialViewResult PartialSearchResult(int id)
         {
             return PartialView("_SearchResutPartialView", _db.Hotels.Find(id));
         }
+
     
     }
     

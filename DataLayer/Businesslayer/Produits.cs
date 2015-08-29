@@ -11,29 +11,45 @@ namespace DataLayer.Models
     {
         private Form115Entities _db = new Form115Entities();
 
-        public byte Promotions
+        // Fausse bonne idée : non reconnu par LinqForEntities
+        //#region propriétés simple
+        //// Propriétés permettant de parcourir la base lors des relations(Produits)n -> 1 , sans s
+        //// pour se simplifier la vie lors des requêtes Linq
+        //// getter uniquement
+
+        //public virtual Sejours Sejour { get { return Sejours; } }
+
+        //public virtual Hotels Hotel { get { return Sejours.Hotels; } }
+
+        //public virtual Villes Ville { get { return Sejours.Hotels.Villes; } }
+
+        //public virtual Pays Pays { get { return Sejours.Hotels.Villes.Pays; } }
+
+        //public virtual Regions Region { get { return Sejours.Hotels.Villes.Pays.Regions; } }
+
+        //public virtual Continents Continent { get { return Sejours.Hotels.Villes.Pays.Regions.Continents; } }
+
+        //#endregion
+
+
+        #region Promotions
+
+        public virtual byte Promotion
         {
             get
             {
-                return Sejours.Hotels.Promotions
-                                     .Where(p => (p.DateDebut <= DateDepart) && (p.DateFin >= DateDepart))
-                                     .Select(p => p.Valeur)
-                                     .FirstOrDefault();
+                return Sejours.Hotels.Promotions.Where(p => (p.DateDebut <= DateDepart) && (p.DateFin >= DateDepart))
+                                       .Select(p => p.Valeur)
+                                       .FirstOrDefault();
             }
 
         }
 
-        public decimal? PrixSolde
-        {
-            get
-            {
-                return (100 - Sejours.Hotels.Promotions
-                                     .Where(p => (p.DateDebut <= DateDepart) && (p.DateFin >= DateDepart))
-                                     .Select(p => p.Valeur)
-                                     .FirstOrDefault())
-                       * Prix /100;
-            }
+        public virtual decimal? PrixSolde { get { return (100 - Promotion * Prix /100); }
 
         }
+
+        #endregion
     }
+
 }
