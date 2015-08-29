@@ -32,7 +32,7 @@ namespace DataLayer.Models
         //#endregion
 
 
-        #region Promotions
+        #region Prix
 
         public virtual byte Promotion
         {
@@ -45,11 +45,14 @@ namespace DataLayer.Models
 
         }
 
-        public virtual decimal? PrixSolde { get { return (100 - Promotion )* Prix /100; }
-
-        }
-
+        public virtual decimal? PrixSolde { get { return (100 - Promotion )* Prix /100; } }
+        
         #endregion
+
+        // Rq : non iutilisable  dans LinqForEntities alors que c'est le seul endroit où il est nécessaire de tester l'existence d'au moins
+        // une Réservations associée au Produits pour la jointure (opérateur ternaire inutile dans LinqForObjects)
+        // public virtual int Disponibilite { get {return NbPlaces - (Reservations.Count() != 0 ? Reservations.Sum(r => r.Quantity) : 0);}}
+
     }
 
 }

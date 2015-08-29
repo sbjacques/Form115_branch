@@ -77,11 +77,13 @@ namespace Form115.Controllers
             //s = new SearchOptionDateDepart(s, svm.DateDepart);
             s = new SearchOptionDuree(s, svm.Duree);
             s = new SearchOptionNbPers(s, svm.NbPers);
+            s = new SearchOptionCategorie(s, svm.Categorie);
             s = new SearchOptionPrixMax(s, svm.PrixMax);
             s = new SearchOptionPrixMin(s, svm.PrixMin);
 
-
+            // Intégration de DateDepart > DateTime.Now ici car on n'est pas intéressé par un produit périmé
             return s.GetResult()
+                    .Where(p => p.DateDepart >= DateTime.Now)
                     .GroupBy(p => p.Sejours.Hotels.IdHotel,
                              p => p,
                              (key, g) => new SearchResutPartialViewItem
@@ -92,9 +94,9 @@ namespace Form115.Controllers
                     .ToList();
         }
 
-        public PartialViewResult PartialSearchResult(int id)
+        public PartialViewResult PartialSearchResult(SearchResutPartialViewItem srpvi)
         {
-            return PartialView("_SearchResutPartialView", _db.Hotels.Find(id));
+            return PartialView("_SearchResutPartialView", srpvi);
         }
 
     

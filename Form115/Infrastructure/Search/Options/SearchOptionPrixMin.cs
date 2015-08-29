@@ -22,7 +22,7 @@
         public override IEnumerable<Produits> GetResult()
         {
             return _prixMin.HasValue
-                ? SearchBase.GetResult().Where(p => p.Prix >= _prixMin)
+                ? SearchBase.GetResult().Where(p => (p.PrixSolde != null ? p.PrixSolde : p.Prix) >= _prixMin)
                 : SearchBase.GetResult();
         }
     }

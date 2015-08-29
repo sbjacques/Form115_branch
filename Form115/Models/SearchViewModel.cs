@@ -13,7 +13,7 @@ namespace Form115.Models
         public byte? Duree { get; set; }
         public int? PrixMin { get; set; }
         public int? PrixMax { get; set; }
-        public string Categorie { get; set; }
+        public int[] Categorie { get; set; }
         public int? NbPers { get; set; }
 
         // Informations de liste à envoyer à la BDD

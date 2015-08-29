@@ -85,10 +85,20 @@ namespace Form115.Controllers
                                         .OrderByDescending(o => o.Hotel.NbReservations)
                                         .Select(o => new
                                                      {
-                                                         nom = o.Hotel.Nom,
-                                                         ville = o.Hotel.Villes.name.Trim(),
-                                                         photo = o.Hotel.Photo,
-                                                         id = o.Hotel.IdHotel
+                                                         hotel =  new {
+                                                                           nom = o.Hotel.Nom,
+                                                                           ville = o.Hotel.Villes.name.Trim(),
+                                                                           categorie = o.Hotel.Categorie.Value,
+                                                                           photo = o.Hotel.Photo,
+                                                                           id = o.Hotel.IdHotel
+                                                                      },
+                                                         produits = o.Produits
+                                                                      .Select(p => new {
+                                                                                            dateDepart = p.DateDepart.ToString("dd/MM/yyyy"),
+                                                                                            prix = p.Promotion == 0 ? p.Prix : p.PrixSolde,
+                                                                                            duree = p.Sejours.Duree
+                                                                                        })
+                                                                      .OrderBy(op => op.prix)
                                                      }
                                                )
                                         .Take(2).ToList(), JsonRequestBehavior.AllowGet);

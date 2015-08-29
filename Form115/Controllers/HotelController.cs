@@ -67,6 +67,8 @@ namespace Form115.Controllers
                 prods = prods.Where(p => p.DateDepart <= hvm._dateFin);
             //}
 
+            // HACK AsEnumerable avant le select ? Sinon ATTENTION, le nb_restants ne sera
+            // pas à jour pour les prouits n'ayant pas de réservation, nécessite opérateur ternaire poutr jointure externe
             var result = prods.AsEnumerable().Select(p => new {
                                 date = p.DateDepart.ToString("dd/MM/yyyy"), 
                                 duree = p.Sejours.Duree,
